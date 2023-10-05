@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sirius",
+            "outputPath": "dist/Sirius/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -68,6 +68,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslKey": "./localhost-key.pem",
+            "sslCert": "./localhost.pem"
+          },
           "configurations": {
             "production": {
               "browserTarget": "Sirius:build:production"
@@ -101,8 +106,65 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/Sirius/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Sirius:build:development",
+              "serverTarget": "Sirius:server:development"
+            },
+            "production": {
+              "browserTarget": "Sirius:build:production",
+              "serverTarget": "Sirius:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Sirius:build:production",
+              "serverTarget": "Sirius:server:production"
+            },
+            "development": {
+              "browserTarget": "Sirius:build:development",
+              "serverTarget": "Sirius:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "acb1b7e0-8a99-407e-abb9-b5bbe9de5153"
   }
 }

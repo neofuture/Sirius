@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "modern-css-reset";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+:root {
+  --black: #222222;
+  --dark-blue: #001531;
+  --blue: #0075d5;
+  --red: #e53032;
+  --orange: #f4a137;
+  --green: #9fbd47;
+  --white: #fff;
+
+  --background-colour:  var(--blue);
+}
+
+@media only screen and (min-width: 40em) {
+
+}
+
+@media only screen and (min-width: 48em) {
+
+}
+
+@media only screen and (min-width: 64em) {
+
+}
+
+@media only screen and (min-width: 80em) {
+
+}
+
+@media (prefers-reduced-motion) {
+  * {
+    transition: all 0s;
+  }
+}

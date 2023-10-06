@@ -1,0 +1,78 @@
+:host(.section__container) {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+:host(.section__container--column) {
+  flex-direction: column;
+}
+
+:host(.section__container--start) {
+  justify-content: flex-start;
+}
+
+:host(.section__container--column.section__container--start) {
+  align-items: flex-start;
+}
+
+:host(.section__container--end) {
+  justify-content: flex-end;
+}
+
+:host(.section__container--column.section__container--end) {
+  align-items: flex-end;
+}
+
+:host(.section__container--center) {
+  justify-content: center;
+}
+
+:host(.section__container--column.section__container--center) {
+  align-items: center;
+}
+
+:host(.section__container--between) {
+  justify-content: space-between;
+}
+
+:host(.section__container--around) {
+  justify-content: space-around;
+}
+
+@media only screen and (min-width: 40rem) {
+  :host(.section__container) {
+    width: 40rem;
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  :host(.section__container) {
+    width: 48rem;
+    padding: 0 16px;
+  }
+}
+
+@media only screen and (min-width: 64rem) {
+  :host(.section__container) {
+    width: 64rem;
+    padding: 0 16px;
+  }
+}
+
+@media only screen and (min-width: 80rem) {
+  :host(.section__container) {
+    width: 80rem;
+    padding: 0 16px;
+  }
+}
+
+@media only screen and (min-width: 92rem) {
+  :host(.section__container) {
+    width: 92rem;
+    padding: 0 16px;
+  }
+}

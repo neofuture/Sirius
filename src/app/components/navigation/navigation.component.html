@@ -1,0 +1,48 @@
+<nav>
+  <div class="wrapper">
+    <input type="radio" name="slider" id="menu-btn">
+    <input type="radio" name="slider" id="close-btn">
+    <ul class="nav-links">
+      <label for="close-btn" class="btn close-btn"><i class="fa fa-close"></i></label>
+      <li *ngFor="let menu of megaMenu" (mouseenter)="setMenuOpen()" (mouseleave)="setMenuClosed()">
+        <a href="{{menu.slug}}" class="desktop-item" [innerHTML]="menu.title"></a>
+        <input type="checkbox" id="showMega">
+        <label for="showMega" class="mobile-item">Mega Menu</label>
+        <div class="mega-box">
+          <div class="content">
+            <div class="row">
+              <h3 class="header">Top Categories</h3>
+              <ul class="categories-list">
+                <li *ngFor="let menu of menu.categories">
+                  <a href="{{menu.slug}}" [innerHTML]="menu.title"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <h3 class="header">Top Brands</h3>
+              <ul class="brands-list">
+                <li *ngFor="let menu of menu.brands">
+                  <a href="{{menu.slug}}" [innerHTML]="menu.title"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="explore-box">
+                <img src="{{ menu.image}}">
+                <div class="explore-box--actions">
+                  <a href="{{menu.slug}}">
+                    <div [innerHTML]="'Shop '+ menu.title"></div>
+                    <button>Explore</button>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <label for="menu-btn" class="btn menu-btn"><i class="fa fa-bars"></i></label>
+  </div>
+</nav>

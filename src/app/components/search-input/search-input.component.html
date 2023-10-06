@@ -1,0 +1,42 @@
+<div class="search-box">
+  <div class="search-container" [class.focused]="inputFocus">
+    <i class="fa fa-search"></i>
+    <input type="search"
+           placeholder="Search"
+           class="search-input"
+           value="{{searchText}}"
+           spellcheck="false"
+           autocapitalize="none"
+           autocomplete="off"
+           [(ngModel)]="searchText"
+           (focus)="setFocus()"
+           (blur)="setBlur()"
+           (keydown)="search($event)">
+    <select class="search-select" (focus)="setFocus()" (blur)="setBlur()" [(ngModel)]="selectedCategory">
+      <option *ngFor="let category of categories"
+              [value]="category.value" [innerHTML]="category.label"></option>
+    </select>
+  </div>
+  <div class="search-box-results"
+       [class.visible]="(searchText.length > 2 || searchLoading) && inputFocus">
+    <div *ngIf="searchLoading" class="loading">
+      <app-loading></app-loading>
+      <div>{{ searchingText }}</div>
+    </div>
+    <div *ngIf="searchText.length > 2 && listings.length < 1 && !searchLoading && searchCompleted" class="nothing-found">
+      <i class="fa-regular fa-face-frown"></i> Nothing Found
+    </div>
+    <div *ngFor="let listing of listings" class="search-box-row" (click)="selectListing(listing)">
+      <div>
+        <img src="{{ listing.image_url }}">
+      </div>
+      <div>
+        {{listing.listing_title}}
+      </div>
+      <div>
+        {{listing.min_price | currency:'GBP':true:'1.2-2' }}
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<app-standard-header></app-standard-header>
+<div *ngIf="loaded; else loading">
+  <h4>Http Request</h4>
+  <pre class="pre">{{ json | json }}</pre>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <app-loading></app-loading>
+    <div>Loading</div>
+  </div>
+</ng-template>
+
+

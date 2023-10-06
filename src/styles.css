@@ -1,32 +1,50 @@
 @import "modern-css-reset";
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;200;300;400;500;600&display=swap');
 
 :root {
   --black: #222222;
-  --dark-blue: #001531;
-  --blue: #0075d5;
+  --dark-blue: #192348;
+  --blue: #2978b6;
   --red: #e53032;
   --orange: #f4a137;
   --green: #9fbd47;
   --white: #fff;
 
-  --background-colour:  var(--blue);
+  --background-colour:  #2978b6;
+  --dark-background-color: #192348;
+  --light-text-colour: #fff;
+  --dark-text-colour: #222222;
+  --light-border-colour: #fff;
+
+  --search-border-colour: #999999;
+  --search-border-colour-focused: #2978b6;
+  --searh-hover-colour: #dddddd;
 }
 
-@media only screen and (min-width: 40em) {
-
+body {
+  font-family: Onest, sans-serif;
+  color: var(--dark-text-colour);
 }
 
-@media only screen and (min-width: 48em) {
-
+a {
+  text-decoration: none;
 }
 
-@media only screen and (min-width: 64em) {
-
+@media only screen and (min-width: 40rem) {
+  max-width: 52rem;
 }
 
-@media only screen and (min-width: 80em) {
+@media only screen and (min-width: 48rem) {
+  max-width: 60rem;
+}
 
+@media only screen and (min-width: 64rem) {
+  max-width: 76rem;
+}
+
+@media only screen and (min-width: 80rem) {
+  max-width: 92rem;
 }
 
 @media (prefers-reduced-motion) {

@@ -1,0 +1,20 @@
+<app-standard-header></app-standard-header>
+<app-section flexDirection="column">
+  <div *ngIf="loaded; else loading">
+    <h4>Http Request</h4>
+    Search results for '{{ params['search'] }}' in '{{ params['category'] }}'
+    <hr>
+    Params
+    <pre>{{ params | json }}</pre>
+    HttpResponse
+    <pre>{{ json | json }}</pre>
+  </div>
+</app-section>
+
+
+<ng-template #loading>
+  <div class="loading">
+    <app-loading></app-loading>
+    <div>{{ loadingText }}</div>
+  </div>
+</ng-template>

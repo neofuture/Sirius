@@ -1,0 +1,18 @@
+:host(.header__bar) {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  background-color: var(--background-colour);
+  color:var(--light-text-colour);
+  padding: 0.5rem 0;
+}
+
+a {
+  color: var(--light-text-colour);
+}
+
+div:last-child {
+  display: flex;
+  gap:24px;
+}

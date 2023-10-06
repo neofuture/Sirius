@@ -4,8 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {LoadingComponent} from "../../../components/loading/loading.component";
-import {JsonPipe, NgIf} from "@angular/common";
+import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {SectionComponent} from "../../../components/section/section.component";
+import {SanitiseUrlPipe} from "../../../pipes/sanitise-url.pipe";
 
 @Component({
   selector: 'app-automotive',
@@ -15,17 +16,18 @@ import {SectionComponent} from "../../../components/section/section.component";
     LoadingComponent,
     JsonPipe,
     NgIf,
-    SectionComponent
+    SectionComponent,
+    NgForOf,
+    SanitiseUrlPipe
   ],
   standalone: true
 })
 
 export class AutomotiveComponent {
   slugs!: string[];
-  json: any;
-  comp: string | undefined;
   loaded = false;
   loadingText = 'Loading';
+  listings: any;
   constructor(
     route: ActivatedRoute,
     private httpClient: HttpClient,
@@ -41,7 +43,7 @@ export class AutomotiveComponent {
         this.loadingText = 'Please wait. Still loading';
       }, 8000);
       this.httpClient.get(environment.api + '/search?stored_search=' + this.slugs[0]).subscribe((data: any) => {
-        this.json = data.data;
+        this.listings = data.data.listings;
         this.loaded = true;
       });
     }

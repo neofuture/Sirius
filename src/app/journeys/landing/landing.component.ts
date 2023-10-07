@@ -7,6 +7,7 @@ import {StandardHeaderComponent} from "../../partials/standard-header/standard-h
 import {Title} from "@angular/platform-browser";
 import {AutomotiveComponent} from "./automotive/automotive.component";
 import {CategoryComponent} from "./category/category.component";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-landing',
@@ -34,7 +35,7 @@ export class LandingComponent {
     for(let item of dynamicRoutes) {
       if(item.slug === this.slugs[0]) {
         this.mapping = item.mapping;
-        this.title.setTitle(item.title.replace(/&amp;/ , '&'));
+        this.title.setTitle(environment.siteName + ' - ' + item.title.replace(/&amp;/ , '&'));
       }
     }
   }

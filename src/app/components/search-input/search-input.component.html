@@ -11,8 +11,8 @@
            [(ngModel)]="searchText"
            (focus)="setFocus()"
            (blur)="setBlur()"
-           (keydown)="search($event)">
-    <select class="search-select" (focus)="setFocus()" (blur)="setBlur()" [(ngModel)]="selectedCategory">
+           (keyup)="search($event)">
+    <select class="search-select" (focus)="setFocus()" (blur)="setBlur()" [(ngModel)]="selectedCategory" (change)="changeCategory()">
       <option *ngFor="let category of categories"
               [value]="category.value" [innerHTML]="category.label"></option>
     </select>

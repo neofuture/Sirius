@@ -68,10 +68,12 @@ nav ul {
   opacity: 1;
   visibility: visible;
   color:var(--dark-text-colour);
+  max-height: 500px;
+  overflow: visible;
 }
 
 .mega-box {
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
   position: absolute;
   left: 0;
   width: 100%;
@@ -82,6 +84,8 @@ nav ul {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   z-index: 999;
+  max-height:0;
+  overflow:hidden;
 }
 
 .mega-box .content {
@@ -214,7 +218,7 @@ nav input {
 .explore-box img {
   width: 42vw;
   max-width: 550px;
-  height: 200px;
+  height: calc(100% - 80px);
   object-fit: cover;
 }
 

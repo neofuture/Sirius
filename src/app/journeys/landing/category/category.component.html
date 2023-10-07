@@ -1,6 +1,6 @@
 <app-section flexDirection="column">
   <div *ngIf="loaded; else loading">
-    <h4>Http Request</h4>
+    <h4>Http Client Request</h4>
     <div *ngFor="let listing of listings">
       <a href="/item/{{listing.listing_id}}/{{listing.listing_title | sanitiseUrl}}" [innerHTML]="listing.listing_title"></a>
     </div>

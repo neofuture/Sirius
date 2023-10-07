@@ -41,6 +41,7 @@ export class SearchInputComponent {
   selectedCategory: number = 0;
   private params: Params;
   private searchObs: Subscription | undefined;
+  private searchValue: string = '';
 
   constructor(
     private httpClient: HttpClient,
@@ -65,6 +66,8 @@ export class SearchInputComponent {
   }
 
   search(event: any) {
+    this.searchValue = event.target.value;
+
     if (event.key === 'Escape') {
       this.listings = [];
       this.searchText = '';
@@ -73,7 +76,7 @@ export class SearchInputComponent {
 
     if (event.key === 'Enter') {
       this.listings = [];
-      let categoryName = 'abc';
+      let categoryName = '';
       for (const category of categories) {
         if (category.value === parseInt(String(this.selectedCategory), 10)) {
           categoryName = category.label;
@@ -83,34 +86,45 @@ export class SearchInputComponent {
       window.location.href = url;
       this.searchObs?.unsubscribe();
     } else {
-      clearTimeout(this.searchDeBounce);
-      clearTimeout(this.timer1);
-      clearTimeout(this.timer2);
-      this.searchDeBounce = setTimeout(() => {
-
-        let searchValue = event.target.value;
-        this.searchLoading = true;
-        this.listings = [];
-        this.searchingText = 'Searching';
-        this.timer1 = setTimeout(() => {
-          this.searchingText = 'Still searching';
-        }, 3000);
-        this.timer2 = setTimeout(() => {
-          this.searchingText = 'Please wait. Still searching';
-        }, 8000);
-        if (searchValue.length > 2) {
-          this.searchLoading = true;
-          this.searchObs = this.httpClient.get(`${environment.api}/search?search=${searchValue}`).subscribe((data: any) => {
-            this.listings = data.data.listings;
-            this.searchLoading = false;
-            this.searchCompleted = true;
-          });
-        } else {
-          this.listings = [];
-          this.searchLoading = false;
-        }
-      }, 500);
+      this.runSearch();
     }
+  }
+
+  runSearch() {
+    clearTimeout(this.searchDeBounce);
+    clearTimeout(this.timer1);
+    clearTimeout(this.timer2);
+    this.searchDeBounce = setTimeout(() => {
+
+      this.searchLoading = true;
+      this.listings = [];
+      this.searchingText = 'Searching';
+      this.timer1 = setTimeout(() => {
+        this.searchingText = 'Still searching';
+      }, 3000);
+      this.timer2 = setTimeout(() => {
+        this.searchingText = 'Please wait. Still searching';
+      }, 8000);
+      if (this.searchValue.length > 2) {
+        this.searchLoading = true;
+        let categoryName = '';
+        for (const category of categories) {
+          if (category.value === parseInt(String(this.selectedCategory), 10)) {
+            categoryName = category.label;
+          }
+        }
+        this.searchObs = this.httpClient.get(
+          `${environment.api}/search?search=${this.searchValue}${this.selectedCategory !== 0 ? `&cat_id=${this.selectedCategory}&category=${categoryName}` : ''}`
+        ).subscribe((data: any) => {
+          this.listings = data.data.listings;
+          this.searchLoading = false;
+          this.searchCompleted = true;
+        });
+      } else {
+        this.listings = [];
+        this.searchLoading = false;
+      }
+    }, 500);
   }
 
   selectListing(listing: any) {
@@ -118,5 +132,10 @@ export class SearchInputComponent {
     const listing_title = listing.listing_title.replace(/ /g, '-').replace(/%/g, '').replace(/(\(|\))/g, '');
     const url = `/item/${listing.listing_id}/${listing_title}`;
     window.location.href = url;
+  }
+
+  changeCategory() {
+    this.listings = [];
+    this.runSearch();
   }
 }

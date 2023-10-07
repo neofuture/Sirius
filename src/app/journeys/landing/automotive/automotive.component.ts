@@ -1,10 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, Inject, PLATFORM_ID} from "@angular/core";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
-import {Title} from "@angular/platform-browser";
 import {LoadingComponent} from "../../../components/loading/loading.component";
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {isPlatformBrowser, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {SectionComponent} from "../../../components/section/section.component";
 import {SanitiseUrlPipe} from "../../../pipes/sanitise-url.pipe";
 
@@ -28,11 +27,13 @@ export class AutomotiveComponent {
   loaded = false;
   loadingText = 'Loading';
   listings: any;
+
   constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
     route: ActivatedRoute,
     private httpClient: HttpClient,
-    private title: Title
   ) {
+    if (isPlatformBrowser(platformId)) {
       this.slugs = route.snapshot.url.map(({path}) => path);
       this.loaded = false;
       this.loadingText = 'Loading';
@@ -47,6 +48,5 @@ export class AutomotiveComponent {
         this.loaded = true;
       });
     }
-
-
+  }
 }

@@ -1,4 +1,57 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
-  Home stuff
+  <h2>Featured</h2>
+  <div *ngFor="let listing of listings.featuredItems">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>{{ listings.featuredCategoryOneListingsName }}</h2>
+  <div *ngFor="let listing of listings.featuredCategoryOneListings">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>{{ listings.featuredCategoryTwoListingsName }}</h2>
+  <div *ngFor="let listing of listings.featuredCategoryTwoListings">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>{{ listings.featuredCategoryThreeListingsName }}</h2>
+  <div *ngFor="let listing of listings.featuredCategoryThreeListings">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>Latest Listings</h2>
+  <div *ngFor="let listing of listings.latestListings">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>Featured Seller</h2>
+  <pre>{{ listings.featuredSeller | json }}</pre>
+
+  <h2>Featured Seller Listings</h2>
+  <div *ngFor="let listing of listings.featuredSellerListings">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>Shops</h2>
+  <div *ngFor="let listing of listings.Shops">
+    <a href="{{listing.shop_url}}" [innerHTML]="listing.shop_name"></a>
+  </div>
+
+  <h2>Greatest Deals</h2>
+  <div *ngFor="let listing of listings.greatest_deals">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>Automotive</h2>
+  <div *ngFor="let listing of listings.Automotive">
+    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
+  </div>
+
+  <h2>Featured Categoris</h2>
+  <pre>{{ listings.featuredCategories | json }}</pre>
+
+  <h2>Top Brands</h2>
+  <pre>{{ listings.topBrands | json }}</pre>
+
 </app-section>

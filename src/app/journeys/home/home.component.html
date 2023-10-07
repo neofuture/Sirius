@@ -1,27 +1,32 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
   <h2>Featured</h2>
-  <div *ngFor="let listing of listings.featuredItems">
+  <div *ngFor="let listing of listings.featuredItems" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>{{ listings.featuredCategoryOneListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryOneListings">
+  <div *ngFor="let listing of listings.featuredCategoryOneListings" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>{{ listings.featuredCategoryTwoListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryTwoListings">
+  <div *ngFor="let listing of listings.featuredCategoryTwoListings" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>{{ listings.featuredCategoryThreeListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryThreeListings">
+  <div *ngFor="let listing of listings.featuredCategoryThreeListings" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>Latest Listings</h2>
-  <div *ngFor="let listing of listings.latestListings">
+  <div *ngFor="let listing of listings.latestListings" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
@@ -29,7 +34,8 @@
   <pre>{{ listings.featuredSeller | json }}</pre>
 
   <h2>Featured Seller Listings</h2>
-  <div *ngFor="let listing of listings.featuredSellerListings">
+  <div *ngFor="let listing of listings.featuredSellerListings" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
@@ -39,12 +45,14 @@
   </div>
 
   <h2>Greatest Deals</h2>
-  <div *ngFor="let listing of listings.greatest_deals">
+  <div *ngFor="let listing of listings.greatest_deals" class="listings">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>Automotive</h2>
   <div *ngFor="let listing of listings.Automotive">
+    <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 

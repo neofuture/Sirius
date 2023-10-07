@@ -1,9 +1,11 @@
 <app-section flexDirection="column">
   <div *ngIf="loaded; else loading">
     <h4>Http Client Request</h4>
-    <div *ngFor="let listing of listings">
+    <div *ngFor="let listing of listings" class="listings">
+      <img src="{{listing.image_url}}" [alt]="listing.listing_title" [title]="listing.listing_title"/>
       <a href="/item/{{listing.listing_id}}/{{listing.listing_title | sanitiseUrl}}" [innerHTML]="listing.listing_title"></a>
     </div>
+    <pre>{{ listings | json }}</pre>
     <div *ngIf="listings.length === 0">No listings found</div>
   </div>
 </app-section>

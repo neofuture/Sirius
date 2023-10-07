@@ -28,7 +28,7 @@
     </div>
     <div *ngFor="let listing of listings" class="search-box-row" (click)="selectListing(listing)">
       <div>
-        <img src="{{ listing.image_url }}">
+        <img [src]="listing.image_url" [alt]="listing.listing_title" loading="lazy">
       </div>
       <div>
         {{listing.listing_title}}

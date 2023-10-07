@@ -2,8 +2,16 @@
 <app-section flexDirection="column">
   <div>
     <h4>Server Response</h4>
-    <pre class="pre">{{ listing | json }}</pre>
+
+    <div class="images">
+      <img *ngFor="let image of listing.data.images" [src]="image.url">
+    </div>
+    <div>
+      <h2>{{ listing.data.title}}</h2>
+      <div [innerHTML]="listing.data.description"></div>
+    </div>
   </div>
+  <pre class="pre">{{ listing | json }}</pre>
 </app-section>
 
 

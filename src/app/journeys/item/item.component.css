@@ -7,3 +7,24 @@
   height: 51vh;
   width:100%;
 }
+
+.images {
+  display:flex;
+  gap:16px;
+  justify-content: flex-start;
+  width:100%;
+  flex-wrap: wrap;
+}
+
+.images img {
+  width: 200px;
+  height: 200px;
+  border:1px solid #ccc;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+pre {
+  max-width:100%;
+  overflow: auto;
+}

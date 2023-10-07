@@ -28,7 +28,13 @@ export class CategoryComponent {
   slugs!: string[];
   loaded = false;
   loadingText = 'Loading';
-  listings: any;
+  listings = [
+    {
+      image_url: undefined,
+      listing_title: '',
+      listing_id: undefined,
+    }
+  ]
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -45,6 +51,7 @@ export class CategoryComponent {
       setTimeout(() => {
         this.loadingText = 'Please wait. Still loading';
       }, 8000);
+
       this.httpClient.get(environment.api + '/search?stored_search=' + this.slugs[0]).subscribe((data: any) => {
         this.listings = data.data.listings;
         this.loaded = true;

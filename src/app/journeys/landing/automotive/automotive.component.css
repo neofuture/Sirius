@@ -7,3 +7,20 @@
   height: 51vh;
   width:100%;
 }
+
+.listings {
+  display: flex;
+  gap:20px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top:16px;
+}
+
+.listings img {
+  width: 100px;
+  height: 100px;
+  border:1px solid #ccc;
+  border-radius: 8px;
+  object-fit: contain;
+}
+

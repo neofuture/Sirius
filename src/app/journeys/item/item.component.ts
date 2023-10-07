@@ -1,13 +1,11 @@
 import {Component} from "@angular/core";
 import {SectionComponent} from "../../components/section/section.component";
 import {ActivatedRoute} from "@angular/router";
-import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
+import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
 import {Title} from "@angular/platform-browser";
-import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
-import {map} from "rxjs";
 
 @Component({
   selector: 'app-item',
@@ -19,7 +17,8 @@ import {map} from "rxjs";
     AsyncPipe,
     StandardHeaderComponent,
     NgIf,
-    LoadingComponent
+    LoadingComponent,
+    NgForOf
   ],
   standalone: true
 })

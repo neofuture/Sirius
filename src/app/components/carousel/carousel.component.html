@@ -2,11 +2,10 @@
                   #swiperContainer
                   autoplay-delay="{{ autoplaytimer }}"
                   keyboard-enabled="true"
-                  autoplay-disable-on-interaction="false"
                   loop="true"
-                  mousewheel-releaseOnEdge="true">
-  <swiper-slide *ngFor="let slide of slides" lazy="true">
-    <img [src]="slide.img" lazy="true">
+                  mousewheel-releaseOnEdges="true">
+  <swiper-slide *ngFor="let slide of slides">
+    <img [src]="slide.img">
   </swiper-slide>
 </swiper-container>
 <ul class="carousel--pagination" aria-label="Carousel navigation controls" *ngIf="pagination">

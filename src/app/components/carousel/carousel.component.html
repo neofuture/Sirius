@@ -1,9 +1,8 @@
 <swiper-container class="carousel--container"
                   #swiperContainer
-                  autoplay-delay="{{ autoplaytimer }}"
+                  autoplay-delay="4000"
                   keyboard-enabled="true"
-                  loop="true"
-                  mousewheel-releaseOnEdges="true">
+                  loop="true">
   <swiper-slide *ngFor="let slide of slides">
     <img [src]="slide.img">
   </swiper-slide>

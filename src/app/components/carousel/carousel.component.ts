@@ -1,4 +1,12 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostBinding, Input, ViewChild} from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  HostBinding,
+  Input,
+  ViewChild
+} from "@angular/core";
 import {register, SwiperContainer} from 'swiper/element/bundle';
 import {NgForOf, NgIf} from "@angular/common";
 register();
@@ -14,13 +22,13 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
-export class CarouselComponent {
+export class CarouselComponent implements AfterViewInit{
   @HostBinding('class.carousel')
   protected readonly hbClass = true;
   activeSlide: number = 0;
 
 
-  @Input() autoplaytimer: number = 0;
+  @Input() autoplaytimer: number = 2000;
   @Input() pagination: boolean = false;
   @Input() nextButton: string = 'Next';
   @Input() prevButton: string = 'Previous';
@@ -41,6 +49,7 @@ export class CarouselComponent {
   }
 
   ngAfterViewInit(): void {
+    console.log(this.autoplaytimer);
     if (this.swiperContainer?.nativeElement.swiper) {
       this.swiperContainer?.nativeElement.swiper.on('slideChange', () => {
         if (this.swiperContainer?.nativeElement.swiper.activeIndex !== undefined) {
@@ -49,4 +58,6 @@ export class CarouselComponent {
       });
     }
   }
+
+  protected readonly parseInt = parseInt;
 }

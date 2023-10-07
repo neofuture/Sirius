@@ -68,6 +68,7 @@ button:disabled {
 swiper-slide img {
   width:100%;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .carousel--slides, .carousel--pagination--item, .carousel--pagination--item__active {
     transition: none;

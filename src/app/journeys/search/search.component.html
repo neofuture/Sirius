@@ -1,13 +1,13 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
+  Search results for '{{ params['search'] }}' in '{{ params['category'] }}'
+
   <div *ngIf="loaded; else loading">
     <h4>Http Request</h4>
-    Search results for '{{ params['search'] }}' in '{{ params['category'] }}'
-    <hr>
-    Params
-    <pre>{{ params | json }}</pre>
-    HttpResponse
-    <pre>{{ json | json }}</pre>
+    <div *ngFor="let listing of listings">
+      <a href="/item/{{listing.listing_id}}/{{listing.listing_title | sanitiseUrl}}" [innerHTML]="listing.listing_title"></a>
+    </div>
+    <div *ngIf="listings.length === 0">No listings found</div>
   </div>
 </app-section>
 

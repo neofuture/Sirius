@@ -3,9 +3,10 @@ import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpClient, HttpClientModule, JsonpClientBackend} from "@angular/common/http";
-import {JsonPipe, NgIf} from "@angular/common";
+import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
+import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,9 @@ import {LoadingComponent} from "../../components/loading/loading.component";
     HttpClientModule,
     JsonPipe,
     LoadingComponent,
-    NgIf
+    NgIf,
+    NgForOf,
+    SanitiseUrlPipe
   ],
   standalone: true
 })
@@ -26,7 +29,7 @@ export class SearchComponent {
   params: Params;
   loaded: boolean | undefined;
   loadingText: string | undefined;
-  json: any;
+  listings: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
@@ -44,7 +47,7 @@ export class SearchComponent {
       this.httpClient.get(
         environment.api + `/search?active_listings=1&cat_id=${this.params["cat_id"]}&category=${this.params["category"]}&page=1&results_per_page=20&search=` + this.params["search"])
         .subscribe((data: any) => {
-        this.json = data.data.listings;
+        this.listings = data.data.listings;
         this.loaded = true;
       });
     }

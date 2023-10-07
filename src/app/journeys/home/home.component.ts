@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
+import {CarouselComponent} from "../../components/carousel/carousel.component";
 
 @Component({
   selector: 'app-home',
@@ -16,13 +17,25 @@ import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
     SectionComponent,
     JsonPipe,
     NgForOf,
-    SanitiseUrlPipe
+    SanitiseUrlPipe,
+    CarouselComponent
   ],
   standalone: true
 })
 
 export class HomeComponent {
   listings: any;
+
+  slides = [
+    {img: '/assets/images/banners/banner1.jpg'},
+    {img: '/assets/images/banners/banner2.jpg'},
+    {img: '/assets/images/banners/banner1.jpg'},
+    {img: '/assets/images/banners/banner2.jpg'},
+    {img: '/assets/images/banners/banner1.jpg'},
+    {img: '/assets/images/banners/banner2.jpg'},
+    {img: '/assets/images/banners/banner1.jpg'},
+    {img: '/assets/images/banners/banner2.jpg'},
+  ];
   constructor(
     private activatedRoute: ActivatedRoute,
     private title: Title,

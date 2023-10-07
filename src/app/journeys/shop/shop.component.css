@@ -1,0 +1,38 @@
+.section {
+  position: relative;
+}
+
+.banner {
+  width:100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  border:1px solid #ccc;
+}
+
+.logo {
+  overflow:hidden;
+  max-width: 200px;
+  min-width: 200px;
+  border-radius: 8px;
+  object-fit: contain;
+  border:1px solid #ccc;
+  background-color:var(--white);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.header {
+  display: flex;
+  gap:16px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top:16px;
+}
+
+
+pre {
+  max-width:100%;
+  overflow: auto;
+}

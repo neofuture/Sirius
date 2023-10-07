@@ -1,0 +1,75 @@
+:host(.carousel) {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  width:100%;
+}
+
+.carousel--container {
+  width: 100%;
+}
+
+.carousel--pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 16px;
+  user-select: none;
+}
+
+.carousel--pagination--item {
+  width: 16px;
+  height: 16px;
+  margin: 4px;
+  background-color: #dddddd;
+  color: #dddddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, margin 0.4s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel--pagination--item__active {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  background-color: red;
+  color: white;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, margin 0.4s ease-in-out;
+}
+
+.carousel--pagination--item:focus-visible, button:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px red;
+}
+
+
+button {
+  background-color: red;
+  border:none;
+  border-radius:15px;
+  color: white;
+  padding: 2px 8px 4px 8px;
+  min-width: 30px;
+}
+
+button:disabled {
+  background-color: #bbbbbb;
+}
+
+swiper-slide img {
+  width:100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel--slides, .carousel--pagination--item, .carousel--pagination--item__active {
+    transition: none;
+  }
+}

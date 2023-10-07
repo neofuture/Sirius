@@ -1,0 +1,44 @@
+<swiper-container class="carousel--container"
+                  #swiperContainer
+                  autoplay-delay="{{ autoplaytimer }}"
+                  keyboard-enabled="true"
+                  autoplay-disable-on-interaction="false">
+  <swiper-slide *ngFor="let slide of slides">
+    <img [src]="slide.img">
+  </swiper-slide>
+</swiper-container>
+<ul class="carousel--pagination" aria-label="Carousel navigation controls" *ngIf="pagination">
+  <ng-container *ngIf="prevButton">
+    <li>
+      <button
+        tabindex="0"
+        *ngIf="prevButton"
+        [disabled]="activeSlide <= 0"
+        [innerHTML]="prevButton"
+        [attr.aria-label]="prevButton"
+        (click)="setPreviousSlide()">
+      </button>
+    </li>
+  </ng-container>
+  <li *ngFor="let slide of slides; let currentIndex = index"
+      tabindex="0"
+      class="carousel--pagination--item"
+      [class.carousel--pagination--item__active]="activeSlide === currentIndex"
+      [attr.aria-selected]="activeSlide === currentIndex"
+      [attr.aria-label]="'Goto slide ' + currentIndex + 1"
+      (click)="setActiveSlide(currentIndex)"
+      (keydown.enter)="setActiveSlide(currentIndex)">
+    {{ currentIndex + 1 }}
+  </li>
+  <ng-container *ngIf="nextButton">
+    <li>
+      <button
+        tabindex="0"
+        [disabled]="activeSlide >= slides.length - 1"
+        [innerHTML]="nextButton"
+        [attr.aria-label]="nextButton"
+        (click)="setNextSlide()">
+      </button>
+    </li>
+  </ng-container>
+</ul>

@@ -1,5 +1,8 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
+  <app-carousel [autoplaytimer]="5000" [pagination]="false" [slides]="slides"></app-carousel>
+
+
   <h2>Featured</h2>
   <div *ngFor="let listing of listings.featuredItems" class="listings">
     <img loading="lazy" [src]="listing.images[0].url">
@@ -51,13 +54,16 @@
   </div>
 
   <h2>Automotive</h2>
-  <div *ngFor="let listing of listings.Automotive">
+  <div *ngFor="let listing of listings.Automotive" class="listings">
     <img loading="lazy" [src]="listing.images[0].url">
     <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
   </div>
 
   <h2>Featured Categoris</h2>
-  <pre>{{ listings.featuredCategories | json }}</pre>
+
+  <div *ngFor="let listing of listings.featuredCategories" class="listings">
+    <a href="{{listing.url.toLowerCase()}}" [innerHTML]="listing.name"></a>
+  </div>
 
   <h2>Top Brands</h2>
   <pre>{{ listings.topBrands | json }}</pre>

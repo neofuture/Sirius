@@ -25,3 +25,14 @@ export const HomeResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, stat
     );
 }
 
+export const ShopResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot, listingService: ListingsService = inject(ListingsService)
+): Observable<{}> => {
+  let slugs = route.url.map(({path}) => path);
+  return listingService
+    .getShop(slugs[1])
+    .pipe(catchError((err) => {
+        return of('No data' + err);
+      })
+    );
+}
+

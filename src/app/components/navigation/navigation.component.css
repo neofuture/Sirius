@@ -44,7 +44,8 @@ nav ul {
 .nav-links li a {
   color: var(--background-colour);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
@@ -142,6 +143,13 @@ nav ul {
   top: 10px;
 }
 
+@media screen and (max-width: 1280px) {
+  .nav-links li a {
+    font-size: 14px;
+    padding: 2px 0;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .nav-links > li {
     padding: 8px 0 8px 0;
@@ -152,7 +160,7 @@ nav ul {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 64rem) {
   nav {
     width: 50px;
   }

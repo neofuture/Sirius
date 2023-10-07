@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {CategoryRouteGuard} from "./guards/category.guard";
-import {HomeResolver, ItemResolver} from "./resolvers/routing.resolver";
+import {HomeResolver, ItemResolver, ShopResolver} from "./resolvers/routing.resolver";
 
 export const routes: Routes = [
   {
@@ -20,6 +20,11 @@ export const routes: Routes = [
     path: 'item/:item/:slug',
     loadComponent: () => import('./journeys/item/item.component').then(m => m.ItemComponent),
     resolve: {listingData: ItemResolver}
+  },
+  {
+    path: 'shop/:shopName',
+    loadComponent: () => import('./journeys/shop/shop.component').then(m => m.ShopComponent),
+    resolve: {listingData: ShopResolver}
   },
   {
     path: ':dynamicPath',

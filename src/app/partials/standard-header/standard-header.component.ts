@@ -3,6 +3,7 @@ import {HeaderBarComponent} from "../../components/header-bar/header-bar.compone
 import {NavigationComponent} from "../../components/navigation/navigation.component";
 import {SearchBarComponent} from "../../components/search-bar/search-bar.component";
 import {SectionComponent} from "../../components/section/section.component";
+import {CarouselComponent} from "../../components/carousel/carousel.component";
 
 @Component({
   selector: 'app-standard-header',
@@ -12,7 +13,8 @@ import {SectionComponent} from "../../components/section/section.component";
     HeaderBarComponent,
     NavigationComponent,
     SearchBarComponent,
-    SectionComponent
+    SectionComponent,
+    CarouselComponent
   ]
 })
 

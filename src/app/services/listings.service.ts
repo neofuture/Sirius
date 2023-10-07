@@ -18,4 +18,8 @@ export class ListingsService  {
   getHome(): any {
     return this.http.get(environment.api + '/home_page');
   }
+
+  getShop(shopName: any) {
+    return this.http.get(environment.api + '/shop?shop_name=' + shopName);
+  }
 }

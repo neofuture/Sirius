@@ -29,12 +29,6 @@ export class HomeComponent {
   slides = [
     {img: '/assets/images/banners/banner1.jpg'},
     {img: '/assets/images/banners/banner2.jpg'},
-    {img: '/assets/images/banners/banner1.jpg'},
-    {img: '/assets/images/banners/banner2.jpg'},
-    {img: '/assets/images/banners/banner1.jpg'},
-    {img: '/assets/images/banners/banner2.jpg'},
-    {img: '/assets/images/banners/banner1.jpg'},
-    {img: '/assets/images/banners/banner2.jpg'},
   ];
   constructor(
     private activatedRoute: ActivatedRoute,

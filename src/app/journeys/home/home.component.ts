@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
 import {SectionComponent} from "../../components/section/section.component";
 import {Title} from "@angular/platform-browser";
@@ -12,6 +12,7 @@ import {CarouselComponent} from "../../components/carousel/carousel.component";
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     StandardHeaderComponent,
     SectionComponent,

@@ -65,10 +65,6 @@ button:disabled {
   background-color: #bbbbbb;
 }
 
-swiper-slide img {
-  width:100%;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .carousel--slides, .carousel--pagination--item, .carousel--pagination--item__active {
     transition: none;

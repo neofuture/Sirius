@@ -1,12 +1,17 @@
-<swiper-container class="carousel--container"
+<swiper-container *ngIf="slidesPerView === 1" class="carousel--container"
                   #swiperContainer
-                  autoplay-delay="4000"
                   keyboard-enabled="true"
-                  loop="true">
-  <swiper-slide *ngFor="let slide of slides">
-    <img [src]="slide.img">
-  </swiper-slide>
+                  mousewheel-enabled="true"
+                  autoplay-disable-on-interaction="false"
+                  ally="true"
+                  pagination="true"
+                  pagination-clickable="true"
+                  navigation="true"
+                  slides-per-view="1"
+                  autoplay-delay="4000">
+<ng-content></ng-content>
 </swiper-container>
+
 <ul class="carousel--pagination" aria-label="Carousel navigation controls" *ngIf="pagination">
   <ng-container *ngIf="prevButton">
     <li>

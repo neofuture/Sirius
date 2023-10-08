@@ -1,31 +1,61 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
-  <app-carousel [pagination]="false" [slides]="slides"></app-carousel>
-
+  <app-carousel [pagination]="false" [slides]="slides">
+    <swiper-slide *ngFor="let slide of slides">
+      <img [src]="slide.img">
+    </swiper-slide>
+    <swiper-slide *ngFor="let slide of slides">
+      <img [src]="slide.img">
+    </swiper-slide>
+  </app-carousel>
 
   <h2>Featured</h2>
-  <div *ngFor="let listing of listings.featuredItems" class="listings">
-    <img loading="lazy" [src]="listing.images[0].url">
-    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
-  </div>
+  <app-carousel [pagination]="false" [slides]="listings.featuredItems">
+    <swiper-slide *ngFor="let listing of listings.featuredItems">
+      <div class="product-card">
+        <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
+          <img loading="lazy" [src]="listing.images[0].url">
+          <div [innerHTML]="listing.title"></div>
+        </a>
+      </div>
+    </swiper-slide>
+  </app-carousel>
 
   <h2>{{ listings.featuredCategoryOneListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryOneListings" class="listings">
-    <img loading="lazy" [src]="listing.images[0].url">
-    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
-  </div>
+  <app-carousel [pagination]="false" [slides]="listings.featuredCategoryOneListings">
+    <swiper-slide *ngFor="let listing of listings.featuredCategoryOneListings">
+      <div class="product-card">
+        <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
+          <img loading="lazy" [src]="listing.images[0].url">
+          <div [innerHTML]="listing.title"></div>
+        </a>
+      </div>
+    </swiper-slide>
+  </app-carousel>
 
   <h2>{{ listings.featuredCategoryTwoListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryTwoListings" class="listings">
-    <img loading="lazy" [src]="listing.images[0].url">
-    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
-  </div>
+  <app-carousel [pagination]="false" [slides]="listings.featuredCategoryTwoListings">
+    <swiper-slide *ngFor="let listing of listings.featuredCategoryTwoListings">
+      <div class="product-card">
+        <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
+          <img loading="lazy" [src]="listing.images[0].url">
+          <div [innerHTML]="listing.title"></div>
+        </a>
+      </div>
+    </swiper-slide>
+  </app-carousel>
 
   <h2>{{ listings.featuredCategoryThreeListingsName }}</h2>
-  <div *ngFor="let listing of listings.featuredCategoryThreeListings" class="listings">
-    <img loading="lazy" [src]="listing.images[0].url">
-    <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}" [innerHTML]="listing.title"></a>
-  </div>
+  <app-carousel [pagination]="false" [slides]="listings.featuredCategoryThreeListings">
+    <swiper-slide *ngFor="let listing of listings.featuredCategoryThreeListings">
+      <div class="product-card">
+        <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
+          <img loading="lazy" [src]="listing.images[0].url">
+          <div [innerHTML]="listing.title"></div>
+        </a>
+      </div>
+    </swiper-slide>
+  </app-carousel>
 
   <h2>Latest Listings</h2>
   <div *ngFor="let listing of listings.latestListings" class="listings">

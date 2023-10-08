@@ -22,4 +22,5 @@ export class ListingsService  {
   getShop(shopName: any) {
     return this.http.get(environment.api + '/shop?shop_name=' + shopName);
   }
+
 }

@@ -1,14 +1,10 @@
-<swiper-container *ngIf="slidesPerView === 1" class="carousel--container"
+<swiper-container class="carousel--container"
                   #swiperContainer
                   keyboard-enabled="true"
-                  mousewheel-enabled="true"
-                  autoplay-disable-on-interaction="false"
                   ally="true"
-                  pagination="true"
-                  pagination-clickable="true"
                   navigation="true"
-                  slides-per-view="1"
-                  autoplay-delay="4000">
+                  space-between="16"
+                  [attr.slides-per-view]="slidesPerView">
 <ng-content></ng-content>
 </swiper-container>
 

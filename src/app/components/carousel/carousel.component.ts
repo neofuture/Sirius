@@ -27,7 +27,8 @@ export class CarouselComponent implements AfterViewInit {
   protected readonly hbClass = true;
   activeSlide: number = 0;
   @Input() slidesPerView: number = 1;
-  @Input() autoplay: boolean = false;
+  @Input() autoplayDelay: any = false;
+  @Input() autoplay: any = false;
   @Input() pagination: boolean = false;
   @Input() nextButton: string = 'Next';
   @Input() prevButton: string = 'Previous';
@@ -59,7 +60,7 @@ export class CarouselComponent implements AfterViewInit {
           this.activeSlide = this.swiperContainer?.nativeElement.swiper.activeIndex;
         }
       });
-      if (this.autoplay) {
+      if(this.autoplay){
         this.swiperContainer.nativeElement.swiper.autoplay.start();
       }
     }

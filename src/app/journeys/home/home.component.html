@@ -1,6 +1,10 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
-  <app-carousel [pagination]="false" [slides]="slides">
+  <app-carousel [pagination]="false"
+                [slides]="slides"
+                [slidesPerView]="1"
+                [autoplayDelay]="300"
+                [autoplay]="true">
     <swiper-slide *ngFor="let slide of slides">
       <img [src]="slide.img">
     </swiper-slide>
@@ -10,11 +14,14 @@
   </app-carousel>
 
   <h2>Featured</h2>
-  <app-carousel [pagination]="false" [slides]="listings.featuredItems">
+  <app-carousel [pagination]="false"
+                [slides]="listings.featuredItems"
+                [slidesPerView]="4"
+                [autoplay]="false">
     <swiper-slide *ngFor="let listing of listings.featuredItems">
       <div class="product-card">
         <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
-          <img loading="lazy" [src]="listing.images[0].url">
+          <img [src]="listing.images[0].url">
           <div [innerHTML]="listing.title"></div>
         </a>
       </div>
@@ -22,7 +29,7 @@
   </app-carousel>
 
   <h2>{{ listings.featuredCategoryOneListingsName }}</h2>
-  <app-carousel [pagination]="false" [slides]="listings.featuredCategoryOneListings">
+  <app-carousel [pagination]="false" [slides]="listings.featuredCategoryOneListings" [slidesPerView]="4">
     <swiper-slide *ngFor="let listing of listings.featuredCategoryOneListings">
       <div class="product-card">
         <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">

@@ -1,5 +1,4 @@
 :host(.carousel) {
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   row-gap: 16px;

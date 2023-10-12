@@ -11,7 +11,7 @@
   --green: #9fbd47;
   --white: #fff;
 
-  --background-colour:  #2978b6;
+  --background-colour: #2978b6;
   --dark-background-color: #192348;
   --light-text-colour: #fff;
   --dark-text-colour: #222222;
@@ -30,30 +30,15 @@ body {
 a {
   text-decoration: none;
 }
+
 h1 {
-  font-weight:300;
+  font-weight: 300;
   font-size: 2rem;
 }
 
 h2 {
-  font-weight:300;
+  font-weight: 300;
   font-size: 2rem;
-}
-
-@media only screen and (min-width: 40rem) {
-  max-width: 52rem;
-}
-
-@media only screen and (min-width: 48rem) {
-  max-width: 60rem;
-}
-
-@media only screen and (min-width: 64rem) {
-  max-width: 76rem;
-}
-
-@media only screen and (min-width: 80rem) {
-  max-width: 92rem;
 }
 
 @media (prefers-reduced-motion) {

@@ -1,5 +1,5 @@
 [build]
-  command = "nx build"
+  command = "npm run build"
   functions = "./functions"
   publish = "dist/sirius/browser"
 

@@ -1,7 +1,7 @@
 [build]
-  command = "nx run prerender"
+  command = "nx build"
   functions = "./functions"
-  publish = "dist/sirius/server"
+  publish = "dist/sirius/browser"
 
 [[redirects]]
   from = "/*"

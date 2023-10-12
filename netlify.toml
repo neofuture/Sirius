@@ -1,0 +1,10 @@
+[build]
+  command = "nx run prerender"
+  functions = "./functions"
+  publish = "dist/sirius/server"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

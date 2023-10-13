@@ -21,6 +21,7 @@ swiper-slide img {
 swiper-slide {
   margin:4px 0;
 }
+
 /* product card */
 .product-card {
   min-height: 400px;
@@ -32,7 +33,7 @@ swiper-slide {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 8px;
-  box-shadow: #dddddd 0px 0px 8px;
+  box-shadow: #dddddd 0 0 8px;
   margin:4px;
   transition: all 0.3s;
 }

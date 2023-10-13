@@ -1,17 +1,17 @@
 <app-standard-header></app-standard-header>
 <app-section flexDirection="column">
   <div>
-    <h1>{{ listing.data.title}}</h1>
-    <div *ngIf="listing.data.shop.url">
+    <h1>{{ listing?.data?.title}}</h1>
+    <div *ngIf="listing?.data?.shop?.url">
       <h3>Shop</h3>
-      <a [href]="listing.data.shop.url">Visit {{ listing.data.shop.name }}</a>
+      <a [href]="listing?.data?.shop?.url">Visit {{ listing?.data?.shop?.name }}</a>
     </div>
 
     <div class="images">
-      <img *ngFor="let image of listing.data.images" [src]="image.url">
+      <img *ngFor="let image of listing?.data?.images" [src]="image.url">
     </div>
     <div>
-      <div [innerHTML]="listing.data.description"></div>
+      <div [innerHTML]="listing?.data?.description"></div>
     </div>
   </div>
   <pre class="pre">{{ listing | json }}</pre>

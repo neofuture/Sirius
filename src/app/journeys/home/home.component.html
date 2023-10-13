@@ -21,7 +21,7 @@
     <swiper-slide *ngFor="let listing of listings.featuredItems">
       <div class="product-card">
         <a href="/item/{{listing.listing_id}}/{{listing.title | sanitiseUrl}}">
-          <img [src]="listing.images[0].url">
+          <img [src]="listing.images[0].url" alt="">
           <div [innerHTML]="listing.title"></div>
         </a>
       </div>

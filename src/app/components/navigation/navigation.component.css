@@ -65,7 +65,7 @@ nav ul {
 
 .nav-links li:hover .mega-box {
   transition: all 0.3s ease;
-  top: 34.5px;
+  top: 34px;
   opacity: 1;
   visibility: visible;
   color:var(--dark-text-colour);
@@ -180,7 +180,7 @@ nav ul {
     padding: 50px 10px;
     line-height: 50px;
     overflow-y: auto;
-    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.18);
     transition: all 0.3s ease;
   }
 

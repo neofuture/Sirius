@@ -1,6 +1,7 @@
 import {Component, HostBinding} from "@angular/core";
 import {NgForOf, NgIf} from "@angular/common";
 import {dynamicRoutes} from "../../dynamic-routes.routes";
+import {Menu} from "../../models/menu.interface";
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +15,7 @@ import {dynamicRoutes} from "../../dynamic-routes.routes";
 })
 
 export class NavigationComponent {
-  megaMenu: any = [];
+  megaMenu: Menu[];
   focusState = false;
 
   @HostBinding('class.navigation')

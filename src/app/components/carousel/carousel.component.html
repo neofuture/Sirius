@@ -21,16 +21,19 @@
       </button>
     </li>
   </ng-container>
-  <li *ngFor="let slide of slides; let currentIndex = index"
-      tabindex="0"
-      class="carousel--pagination--item"
-      [class.carousel--pagination--item__active]="activeSlide === currentIndex"
-      [attr.aria-selected]="activeSlide === currentIndex"
-      [attr.aria-label]="'Goto slide ' + currentIndex + 1"
-      (click)="setActiveSlide(currentIndex)"
-      (keydown.enter)="setActiveSlide(currentIndex)">
-    {{ currentIndex + 1 }}
-  </li>
+
+  <ng-template ngFor [ngForOf]="slides" let-i="index">
+    <li
+        tabindex="0"
+        class="carousel--pagination--item"
+        [class.carousel--pagination--item__active]="activeSlide === i"
+        [attr.aria-selected]="activeSlide ===i"
+        [attr.aria-label]="'Goto slide ' + i + 1"
+        (click)="setActiveSlide(i)"
+        (keydown.enter)="setActiveSlide(i)">
+      {{ i + 1 }}
+    </li>
+  </ng-template>
   <ng-container *ngIf="nextButton">
     <li>
       <button

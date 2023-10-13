@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import {CategoryRouteGuard} from "./guards/category.guard";
-import {HomeResolver, ItemResolver, ShopResolver} from "./resolvers/routing.resolver";
+import {HomeResolver} from "./resolvers/home.resolver";
+import {ItemResolver} from "./resolvers/item.resolver";
+import {ShopResolver} from "./resolvers/shop.resolver";
 
 export const routes: Routes = [
   {

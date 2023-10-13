@@ -40,7 +40,6 @@
   background-color: transparent;
   border-radius: 0;
   font-size: 12px;
-  -webkit-appearance: none;
 }
 
 .focused {
@@ -63,7 +62,7 @@
   border-bottom-right-radius: 5px;
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
   z-index: 99999;
   min-height: 4px;
 }

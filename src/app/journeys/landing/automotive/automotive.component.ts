@@ -6,6 +6,7 @@ import {LoadingComponent} from "../../../components/loading/loading.component";
 import {isPlatformBrowser, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {SectionComponent} from "../../../components/section/section.component";
 import {SanitiseUrlPipe} from "../../../pipes/sanitise-url.pipe";
+import {StoredSearch} from "../../../models/stored-search.interface";
 
 @Component({
   selector: 'app-automotive',
@@ -26,7 +27,7 @@ export class AutomotiveComponent {
   slugs!: string[];
   loaded = false;
   loadingText = 'Loading';
-  listings: any;
+  listings: StoredSearch[] | [] | undefined;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,

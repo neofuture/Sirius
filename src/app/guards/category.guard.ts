@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import {dynamicRoutes} from "../dynamic-routes.routes";
 
 @Injectable({
@@ -15,7 +15,7 @@ export class CategoryRouteGuard {
     }
   }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  canActivate = (route: ActivatedRouteSnapshot): boolean => {
     const dynamicPath = route.params['dynamicPath'];
 
     if (this.validPaths.includes(dynamicPath)) {
@@ -24,5 +24,5 @@ export class CategoryRouteGuard {
       this.router.navigate(['/']).then();
       return false;
     }
-  }
+  };
 }

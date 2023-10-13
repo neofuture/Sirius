@@ -6,7 +6,7 @@
       <a href="/item/{{listing.listing_id}}/{{listing.listing_title | sanitiseUrl}}" [innerHTML]="listing.listing_title"></a>
     </div>
     <pre>{{ listings | json }}</pre>
-    <div *ngIf="listings.length === 0">No listings found</div>
+    <div *ngIf="listings && listings.length === 0">No listings found</div>
   </div>
 </app-section>
 

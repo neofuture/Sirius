@@ -6,6 +6,7 @@ import {StandardHeaderComponent} from "../../partials/standard-header/standard-h
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
+import {Item} from "../../models/item.interface";
 
 @Component({
   selector: 'app-item',
@@ -24,14 +25,14 @@ import {LoadingComponent} from "../../components/loading/loading.component";
 })
 
 export class ItemComponent {
-  listing: any;
+  listing: Item | undefined;
   constructor(
     private activatedRoute: ActivatedRoute,
     private title: Title,
   ) {
     this.listing = this.activatedRoute.snapshot.data["listingData"];
     if(this.listing){
-      this.title.setTitle(environment.siteName + ' - ' + this.listing.data.title);
+      this.title.setTitle(environment.siteName + ' - ' + this.listing?.data?.title);
     }
   }
 }

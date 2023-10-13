@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderBarComponent} from "../../components/header-bar/header-bar.component";
 import {NavigationComponent} from "../../components/navigation/navigation.component";
 import {SearchBarComponent} from "../../components/search-bar/search-bar.component";

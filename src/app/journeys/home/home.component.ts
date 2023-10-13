@@ -7,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
 import {CarouselComponent} from "../../components/carousel/carousel.component";
-
+import {ListingsInterface} from "../../models/listings.interface";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,7 +25,7 @@ import {CarouselComponent} from "../../components/carousel/carousel.component";
 })
 
 export class HomeComponent {
-  listings: any;
+  listings:  ListingsInterface;
 
   slides = [
     {img: '/assets/images/banners/banner1.jpg'},

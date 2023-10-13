@@ -2,12 +2,13 @@ import {Component, Inject, PLATFORM_ID} from "@angular/core";
 import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
 import {ActivatedRoute, Params} from "@angular/router";
-import {HttpClient, HttpClientModule, JsonpClientBackend} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {isPlatformBrowser, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
 import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
 import {Title} from "@angular/platform-browser";
+import {StoredSearch} from "../../models/stored-search.interface";
 
 @Component({
   selector: 'app-search',
@@ -30,7 +31,7 @@ export class SearchComponent {
   params: Params;
   loaded: boolean | undefined;
   loadingText: string | undefined;
-  listings: any;
+  listings: StoredSearch[] | [] | undefined;
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
     private activatedRoute: ActivatedRoute,

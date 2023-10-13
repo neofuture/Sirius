@@ -21,6 +21,7 @@ app-search-input {
 }
 
 @media (min-width: 768px) {
+  /*noinspection CssUnusedSymbol*/
   :host(.search-bar) {
     flex-direction: row;
     gap:40px;

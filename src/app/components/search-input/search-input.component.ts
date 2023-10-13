@@ -7,6 +7,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoadingComponent} from "../loading/loading.component";
 import {environment} from "../../../environments/environment";
 import {categories} from "../../dynamic-routes.routes";
+import {StoredSearch} from "../../models/stored-search.interface";
+
 
 @Component({
   selector: 'app-search-input',
@@ -33,13 +35,13 @@ export class SearchInputComponent {
   searchDeBounce: any;
   timer1: any;
   timer2: any;
-  listings: any = [];
+  listings: StoredSearch[] = []
   searchLoading = false;
   searchingText = 'Searching';
   searchCompleted = false;
   category: string = '';
   selectedCategory: number = 0;
-  private params: Params;
+  private readonly params: Params;
   private searchObs: Subscription | undefined;
   private searchValue: string = '';
 
@@ -82,8 +84,7 @@ export class SearchInputComponent {
           categoryName = category.label;
         }
       }
-      const url = `/search/?search=${event.target.value}&page=1&cat_id=${this.selectedCategory}&category=${categoryName}`;
-      window.location.href = url;
+      window.location.href = `/search/?search=${event.target.value}&page=1&cat_id=${this.selectedCategory}&category=${categoryName}`;
       this.searchObs?.unsubscribe();
     } else {
       this.runSearch();
@@ -130,8 +131,7 @@ export class SearchInputComponent {
   selectListing(listing: any) {
     this.listings = [];
     const listing_title = listing.listing_title.replace(/ /g, '-').replace(/%/g, '').replace(/(\(|\))/g, '');
-    const url = `/item/${listing.listing_id}/${listing_title}`;
-    window.location.href = url;
+    window.location.href = `/item/${listing.listing_id}/${listing_title}`;
   }
 
   changeCategory() {

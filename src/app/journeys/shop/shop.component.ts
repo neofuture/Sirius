@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Title} from "@angular/platform-browser";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
+import {Shop} from "../../models/shop.interface";
 
 @Component({
   selector: 'app-shop',
@@ -19,10 +19,9 @@ import {StandardHeaderComponent} from "../../partials/standard-header/standard-h
 })
 
 export class ShopComponent {
-  listing: any;
+  listing: Shop;
   constructor(
     private activatedRoute: ActivatedRoute,
-    title: Title,
   ) {
     this.listing = this.activatedRoute.snapshot.data["listingData"];
   }

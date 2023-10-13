@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input} from "@angular/core";
+import {Component, HostBinding} from "@angular/core";
 import {SectionComponent} from "../section/section.component";
 import {SearchInputComponent} from "../search-input/search-input.component";
 

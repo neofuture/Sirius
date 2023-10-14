@@ -2,8 +2,12 @@ import {ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot} from "@angular/r
 import {ListingsService} from "../services/listings.service";
 import {inject} from "@angular/core";
 import {catchError, Observable, of} from "rxjs";
+import {ListingsInterface} from "../models/listings.interface";
 
-export const HomeResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot, listingService: ListingsService = inject(ListingsService)
+// @ts-ignore
+export const HomeResolver: ResolveFn<ListingsInterface> = (
+  route: ActivatedRouteSnapshot, state: RouterStateSnapshot,
+  listingService: ListingsService = inject(ListingsService)
 ): Observable<{}> => {
   return listingService
     .getHome()

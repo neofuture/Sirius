@@ -1,4 +1,4 @@
-export interface Shop {
+export interface ShopIneterface {
   message: {
     banner: string;
     logo: string;

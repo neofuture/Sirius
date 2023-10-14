@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
-import {Shop} from "../../models/shop.interface";
+import {ShopIneterface} from "../../models/shop.interface";
 
 @Component({
   selector: 'app-shop',
@@ -19,7 +19,7 @@ import {Shop} from "../../models/shop.interface";
 })
 
 export class ShopComponent {
-  listing: Shop;
+  listing: ShopIneterface;
   constructor(
     private activatedRoute: ActivatedRoute,
   ) {

@@ -20,7 +20,7 @@ app-search-input {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 64rem) {
   /*noinspection CssUnusedSymbol*/
   :host(.search-bar) {
     flex-direction: row;

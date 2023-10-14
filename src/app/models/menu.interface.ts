@@ -1,9 +1,9 @@
-export interface Menu {
+export interface MenuInterface {
   title: string;
   url: string;
   slug: string;
   image?: string;
-  categories?: Menu[];
-  brands?: Menu[];
-  children?: Menu[];
+  categories?: MenuInterface[];
+  brands?: MenuInterface[];
+  children?: MenuInterface[];
 }

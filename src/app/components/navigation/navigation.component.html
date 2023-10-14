@@ -3,12 +3,13 @@
     <label for="menu-btn" class="btn menu-btn"><i class="fa fa-bars"></i></label>
     <input type="radio" name="slider" id="menu-btn">
     <input type="radio" name="slider" id="close-btn">
+
     <ul class="nav-links">
+      <li class="btn close-btn">
+        <label for="close-btn"><i class="fa fa-close"></i></label>
+      </li>
       <li *ngFor="let menu of megaMenu" (mouseenter)="setMenuOpen()" (mouseleave)="setMenuClosed()">
-        <label for="close-btn" class="btn close-btn"><i class="fa fa-close"></i></label>
         <a [href]="menu.slug" class="desktop-item" [innerHTML]="menu.title"></a>
-        <input type="checkbox" id="showMega">
-        <label for="showMega" class="mobile-item">Mega Menu</label>
         <div class="mega-box">
           <div class="content">
             <div class="row">

@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoadingComponent} from "../loading/loading.component";
 import {environment} from "../../../environments/environment";
 import {categories} from "../../dynamic-routes.routes";
-import {StoredSearch} from "../../models/stored-search.interface";
+import {StoredSearchInterface} from "../../models/stored-search.interface";
 
 
 @Component({
@@ -35,7 +35,7 @@ export class SearchInputComponent {
   searchDeBounce: any;
   timer1: any;
   timer2: any;
-  listings: StoredSearch[] = []
+  listings: StoredSearchInterface[] = []
   searchLoading = false;
   searchingText = 'Searching';
   searchCompleted = false;

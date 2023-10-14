@@ -6,7 +6,7 @@ import {isPlatformBrowser, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {LoadingComponent} from "../../../components/loading/loading.component";
 import {SectionComponent} from "../../../components/section/section.component";
 import {SanitiseUrlPipe} from "../../../pipes/sanitise-url.pipe";
-import {StoredSearch} from "../../../models/stored-search.interface";
+import {StoredSearchInterface} from "../../../models/stored-search.interface";
 
 @Component({
   selector: 'app-category',
@@ -29,7 +29,7 @@ export class CategoryComponent {
   slugs!: string[];
   loaded = false;
   loadingText = 'Loading';
-  listings: StoredSearch[] | [] | undefined;
+  listings: StoredSearchInterface[] | [] | undefined;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,

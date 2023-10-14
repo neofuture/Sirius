@@ -6,7 +6,7 @@ import {StandardHeaderComponent} from "../../partials/standard-header/standard-h
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
-import {Item} from "../../models/item.interface";
+import {ItemInterface} from "../../models/item.interface";
 
 @Component({
   selector: 'app-item',
@@ -25,7 +25,7 @@ import {Item} from "../../models/item.interface";
 })
 
 export class ItemComponent {
-  listing: Item | undefined;
+  listing: ItemInterface | undefined;
   constructor(
     private activatedRoute: ActivatedRoute,
     private title: Title,

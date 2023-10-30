@@ -4,7 +4,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
+  padding: 0 16px;
 }
 
 :host(.section__container--column) {
@@ -46,6 +46,7 @@
 @media only screen and (min-width: 40rem) {
   :host(.section__container) {
     width: 40rem;
+    padding: 0 16px;
   }
 }
 

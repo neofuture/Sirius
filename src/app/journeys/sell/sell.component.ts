@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
+import {ListingComponent} from "../../components/listing/listing.component";
 
 @Component({
   selector: 'app-sell',
@@ -8,7 +9,8 @@ import {StandardHeaderComponent} from "../../partials/standard-header/standard-h
   styleUrls: ['./sell.component.css'],
   imports: [
     SectionComponent,
-    StandardHeaderComponent
+    StandardHeaderComponent,
+    ListingComponent
   ],
   standalone: true
 })

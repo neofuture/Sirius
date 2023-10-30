@@ -1,0 +1,87 @@
+<h3>Variations</h3>
+<div>Add your variation titles for your product. (Examples would be "Colour" or "Size")</div>
+<br>
+<div class="variations">
+  <div *ngFor="let variation of variations">
+    <div class="entry">
+      <input type="text"
+             [(ngModel)]="variation.title"
+             (ngModelChange)="updateVariations()"
+             (keydown.tab)="addOption(variation)"
+      >
+      <button (click)="removeVariation(variation)" class="red">
+        <i class="fas fa-minus"></i>
+      </button>
+    </div>
+
+    <h3>{{ variation.title }} Options</h3>
+    <div *ngFor="let option of variation.options; let i = index">
+        <div class="entry">
+          <div class="label">{{ option }}</div>
+            <button (click)="removeOption(variation, i)" class="red">
+            <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="entry">
+      <input type="text"
+             [(ngModel)]="variation.option"
+             (keydown.enter)="addOption(variation, $event)"
+             (keydown.tab)="addOption(variation, $event)"
+             placeholder="Add new option">
+      <button (click)="addOption(variation)" class="green">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="entry" *ngIf="maxOptions > variations.length">
+    <input type="text"
+           [(ngModel)]="variationTitle"
+           (keydown.enter)="addVariation($event)"
+           (keydown.tab)="addVariation($event)"
+           placeholder="Add new variation">
+    <button (click)="addVariation()" class="green">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+</div>
+<hr>
+<button (click)="reset()">Reset</button>
+<h3>Product Variations</h3>
+<div>Add product variations from custom options</div>
+<br>
+<table *ngIf="tableData[0] && tableData[0].length > 0; else missingData">
+  <tr>
+    <td>#</td>
+    <td *ngFor="let variation of variations">
+      <b>{{ variation.title }}</b>
+    </td>
+    <td>
+      <b>Pice</b>
+    </td>
+    <td>
+      <b>SKU</b>
+    </td>
+    <td>
+      <b>EAN</b>
+    </td>
+  </tr>
+  <tr *ngFor="let row of tableData;let i = index">
+    <td>{{ i + 1 }}</td>
+    <td *ngFor="let option of row">{{ option }}</td>
+    <td><input type="text" class="smaller"></td>
+    <td><input type="text" class="smaller"></td>
+    <td><input type="text"></td>
+  </tr>
+</table>
+
+<pre>{{ variations | json }}</pre>
+
+<ng-template #missingData>
+  <div class="error">
+  Missing data, please be sure to set all your options in the variations, You can not have any variation options empty.
+  </div>
+</ng-template>

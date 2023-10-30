@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from "@angular/core";
+import {Component, HostBinding, Input, OnInit} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {variationInterface} from "../../models/variations.interface";
@@ -19,12 +19,11 @@ import {variationInterface} from "../../models/variations.interface";
 export class ListingComponent implements OnInit {
     @HostBinding('class.container')
     protected readonly hbClass = true;
-    maxOptions = 5;
+
+    @Input() maxOptions = 3;
+
     variationTitle: string = '';
     variations: variationInterface[] = localStorage.getItem('variations') ? JSON.parse(localStorage.getItem('variations') || '') : []
-    constructor() {
-    }
-
     tableData: any[] = [];
 
     ngOnInit() {

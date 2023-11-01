@@ -21,6 +21,8 @@
   --search-border-colour: #999999;
   --search-border-colour-focused: #2978b6;
   --searh-hover-colour: #dddddd;
+
+  --hightlight-row: #e4ecff
 }
 
 body {

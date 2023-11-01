@@ -2,19 +2,24 @@
   <div>
     <h3>Base Price</h3>
     <div>
-      <input type="number" [(ngModel)]="basePrice" step='0.01' value='0.00' placeholder='0.00'>
+      <input type="number"
+             [(ngModel)]="basePrice"
+             step='0.01'
+             value='0.00'
+             placeholder='0.00'
+             appDecimalValidator [decimalPlaces]="2">
     </div>
   </div>
   <div>
     <h3>SKU</h3>
     <div>
-      <input type="text" [(ngModel)]="sku">
+      <input type="text" [(ngModel)]="sku" (ngModelChange)="generateBaseSkus()">
     </div>
   </div>
   <div>
     <h3>Notation</h3>
     <div>
-      <select [(ngModel)]="notation">
+      <select [(ngModel)]="notation" (ngModelChange)="generateBaseSkus()">
         <option value="-">-</option>
         <option value="_">_</option>
         <option value=".">.</option>
@@ -25,7 +30,7 @@
   <div>
     <h3>Characters</h3>
     <div>
-      <select [(ngModel)]="characters">
+      <select [(ngModel)]="characters" (ngModelChange)="generateBaseSkus()">
         <option value="9999999">All</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -39,7 +44,7 @@
   <div>
     <h3>Capitalise</h3>
     <div>
-      <select [(ngModel)]="capitalise">
+      <select [(ngModel)]="capitalise" (ngModelChange)="generateBaseSkus()">
         <option value="uppercase">Uppercase</option>
         <option value="lowercase">Lowercase</option>
         <option value="unchanged">Unchanged</option>
@@ -55,13 +60,13 @@
 <h3>Variations</h3>
 <div>Add your variation titles for your product. (Examples would be "Colour" or "Size")</div>
 <br>
-<div class="variations">
+<div class="variations" #rootElement>
   <div *ngFor="let variation of variations">
     <div class="entry">
       <input type="text"
-             [(ngModel)]="variation.title"
-             (ngModelChange)="updateVariations()"
-             (keydown.tab)="addOption(variation)"
+             value="{{ variation.title }}"
+             (blur)="updateVariations()"
+             (blur)="setVariation($event, variation)"
              class="button-option"
       >
       <button (click)="removeVariation(variation)" class="red">
@@ -72,7 +77,10 @@
     <h3>{{ variation.title }} Options</h3>
     <div *ngFor="let option of variation.options; let i = index">
       <div class="entry">
-        <div class="label">{{ option }}</div>
+        <input type="text"
+               value="{{ variation.options[i] }}"
+               (blur)="setVariationOption($event, variation, i)"
+               class="button-option">
         <button (click)="removeOption(variation, i)" class="red">
           <i class="fas fa-minus"></i>
         </button>
@@ -97,7 +105,8 @@
            [(ngModel)]="variationTitle"
            (keydown.enter)="addVariation($event)"
            (keydown.tab)="addVariation($event)"
-           placeholder="Add new variation" class="button-option">
+           placeholder="Add new variation"
+           class="button-option">
     <button (click)="addVariation()" class="green">
       <i class="fas fa-plus"></i>
     </button>
@@ -108,7 +117,7 @@
   <h3>Product Variations Specifics</h3>
   <div>Add product variations from custom options</div>
   <br>
-  <table *ngIf="tableData[0] && tableData[0].length > 0; else missingData">
+  <table class="variation-table" *ngIf="tableData[0] && tableData[0].length > 0; else missingData">
     <tr>
       <td>#</td>
       <td *ngFor="let variation of variations">
@@ -123,34 +132,80 @@
       <td>
         <b>EAN</b>
       </td>
-      <td>
-
+      <td class="center">
+        <b>Status</b>
       </td>
     </tr>
-    <tr *ngFor="let row of tableData;let i = index">
-      <td>{{ i + 1 }}</td>
-      <td *ngFor="let option of row">{{ option }}</td>
-      <td><input type="number" class="price" value="{{matrix[row] && matrix[row].price || basePrice | number : '1.2-2'}}" step='0.01'
-                 value='0.00' placeholder='0.00' (change)="createMatrix('price', $event, row)"></td>
-      <td><input type="text" class="sku"
-                 value="{{matrix[row] && matrix[row].sku || sku + notation + createSku(row)}}"
-                 (change)="createMatrix('sku', $event, row)"></td>
-      <td><input type="text" value="{{matrix[row] && matrix[row].ean || ''}}"
-                 (change)="createMatrix('ean', $event, row)"></td>
+    <tr *ngFor="let row of tableData;let i = index" [class.edited]="matrix[row]">
+      <td class="center">
+        <div class="entry">
+          <b>{{ i + 1 }}</b>
+        </div>
+      </td>
+      <td *ngFor="let option of row">
+        <div class="entry">
+          <b>{{ option }}</b>
+        </div>
+      </td>
       <td>
-        <button
-          *ngIf="matrix[row] && matrix[row].ean || matrix[row] && matrix[row].sku || matrix[row] && matrix[row].price" (click)="resetMatricRow(row)">
-          Reset
-        </button>
+        <div class="entry">
+          <input type="number"
+                 class="price button-options"
+                 value="{{matrix[row] && matrix[row].price || basePrice | number : '1.2-2'}}"
+                 step='0.01'
+                 placeholder='0.00'
+                 (blur)="createMatrix('price', $event, row)"
+                 appDecimalValidator [decimalPlaces]="2">
+          <button class="blue" *ngIf="matrix[row] && matrix[row].price" (click)="resetItem('price', row)">
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+      </td>
+      <td>
+        <div class="entry">
+          <input type="text"
+                 class="sku button-options"
+                 value="{{matrix[row] && matrix[row].sku || sku + notation + createSku(row)}}"
+                 (blur)="createMatrix('sku', $event, row)"
+                 [class.field-error]="matrixDuplication(matrix[row] && matrix[row].sku || sku + notation + createSku(row))">
+          <button class="blue" *ngIf="matrix[row] && matrix[row].sku" (click)="resetItem('sku', row)">
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+      </td>
+      <td>
+        <div class="entry">
+          <input type="text"
+                 value="{{matrix[row] && matrix[row].ean || ''}}"
+                 (blur)="createMatrix('ean', $event, row)"
+                 appEanValidator
+                 [maxLength]="14"
+                 class="ean button-option">
+          <button class="blue" *ngIf="matrix[row] && matrix[row].ean" (click)="resetItem('ean', row)">
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+      </td>
+      <td>
+        <div class="entry">
+          <span class="pill pill-red"
+                *ngIf="matrixDuplication(matrix[row] && matrix[row].sku || sku + notation + createSku(row))">Error</span>
+          <span class="pill pill-green"
+                *ngIf="!matrixDuplication(matrix[row] && matrix[row].sku || sku + notation + createSku(row))">OK</span>
+        </div>
+
       </td>
     </tr>
   </table>
 </ng-container>
-
+<div>
+  <br>
+</div>
 
 <!--<pre>{{ variations | json }}</pre>-->
 <!--<hr>-->
 <!--<pre>{{ matrix | json }}</pre>-->
+<!--<pre>{{ baseSkus | json }}</pre>-->
 
 <ng-template #missingData>
   <div class="error">

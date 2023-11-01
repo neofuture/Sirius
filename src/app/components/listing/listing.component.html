@@ -65,7 +65,6 @@
     <div class="entry">
       <input type="text"
              value="{{ variation.title }}"
-             (blur)="updateVariations()"
              (blur)="setVariation($event, variation)"
              class="button-option"
       >
@@ -92,7 +91,6 @@
       <input type="text"
              [(ngModel)]="variation.option"
              (keydown.enter)="addOption(variation, $event)"
-             (keydown.tab)="addOption(variation, $event)"
              placeholder="Add new option" class="button-option">
       <button (click)="addOption(variation)" class="green">
         <i class="fas fa-plus"></i>

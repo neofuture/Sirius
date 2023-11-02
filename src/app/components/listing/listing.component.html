@@ -2,11 +2,8 @@
   <div>
     <h3>Base Price</h3>
     <div>
-      <input type="number"
+      <input type="text"
              [(ngModel)]="basePrice"
-             step='0.01'
-             value='0.00'
-             placeholder='0.00'
              appDecimalValidator [decimalPlaces]="2">
     </div>
   </div>
@@ -62,8 +59,7 @@
       <input type="text"
              value="{{ variation.title }}"
              (blur)="setVariation($event, variation)"
-             class="button-option"
-      >
+             class="button-option">
       <button (click)="removeVariation(variation)" class="red">
         <i class="fas fa-minus"></i>
       </button>
@@ -146,11 +142,10 @@
       </td>
       <td>
         <div class="entry">
-          <input type="number"
-                 class="price button-options"
-                 value="{{matrix[row] && matrix[row].price || basePrice | number : '1.2-2'}}"
-                 step='0.01'
-                 placeholder='0.00'
+          <input type="text"
+                 class="price"
+                 [class.button-options]="matrix[row] && matrix[row].price"
+                 value="{{matrix[row] && matrix[row].price || basePrice}}"
                  (blur)="createMatrix('price', $event, row)"
                  appDecimalValidator [decimalPlaces]="2">
           <button class="blue" *ngIf="matrix[row] && matrix[row].price" (click)="resetItem('price', row)">
@@ -161,7 +156,8 @@
       <td>
         <div class="entry">
           <input type="text"
-                 class="sku button-options"
+                 class="sku"
+                 [class.button-options]="matrix[row] && matrix[row].sku"
                  value="{{matrix[row] && matrix[row].sku || sku + notation + createSku(row)}}"
                  (blur)="createMatrix('sku', $event, row)"
                  [class.field-error]="matrixDuplication(matrix[row] && matrix[row].sku || sku + notation + createSku(row))">
@@ -173,11 +169,12 @@
       <td>
         <div class="entry">
           <input type="text"
+                 [class.button-options]="matrix[row] && matrix[row].ean"
                  value="{{matrix[row] && matrix[row].ean || ''}}"
                  (blur)="createMatrix('ean', $event, row)"
                  appEanValidator
                  [maxLength]="14"
-                 class="ean button-option">
+                 class="ean">
           <button class="blue" *ngIf="matrix[row] && matrix[row].ean" (click)="resetItem('ean', row)">
             <i class="fas fa-undo"></i>
           </button>
@@ -199,10 +196,10 @@
   <br>
 </div>
 
-<!--<pre>{{ variations | json }}</pre>-->
-<!--<hr>-->
-<!--<pre>{{ matrix | json }}</pre>-->
-<!--<pre>{{ baseSkus | json }}</pre>-->
+<pre>{{ variations | json }}</pre>
+<hr>
+<pre>{{ matrix | json }}</pre>
+<pre>{{ baseSkus | json }}</pre>
 
 <ng-template #missingData>
   <div class="error">

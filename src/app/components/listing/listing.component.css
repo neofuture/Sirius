@@ -1,6 +1,7 @@
 :host(.container) {
   width: 100%;
   display: block;
+  font-size:14px;
 }
 
 .variations {
@@ -64,7 +65,11 @@ select {
 }
 
 input[type="text"].button-options {
-  padding-right: 40px;
+  padding-right: 28px;
+}
+
+input[type="number"].button-options {
+  padding-right: 28px;
 }
 
 input[type="number"] {
@@ -95,7 +100,7 @@ button {
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 8px;
+  right: 4px;
 }
 
 .blue {
@@ -104,7 +109,7 @@ button {
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 8px;
+  right: 4px;
   font-size:12px;
 }
 
@@ -114,7 +119,7 @@ button {
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 8px;
+  right: 4px;
 }
 
 h3 {
@@ -136,15 +141,16 @@ h3 {
 
 
 .price {
-  max-width: 120px;
+  max-width: 100px;
+  text-align: right;
 }
 
 .sku {
-  max-width: 220px;
+  max-width: 200px;
 }
 
 .ean {
-  max-width: 190px;
+  max-width: 160px;
 }
 
 .field-error {
@@ -154,15 +160,15 @@ h3 {
 }
 
 .pill {
-  font-size: 16px;
+  font-size: 12px;
   color: var(--white);
-  min-width: 80px;
+  min-width: 60px;
   text-transform: uppercase;
   border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 8px 6px;
   font-weight: bold;
 }
 

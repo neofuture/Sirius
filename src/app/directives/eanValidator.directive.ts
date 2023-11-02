@@ -20,7 +20,7 @@ export class EanValidatorDirective {
       event.key === 'c' && (event.ctrlKey || event.metaKey);
 
     if (isAllowedKey) {
-      if (!isBackspace && inputValue.length >= this.maxLength) {
+      if (!isBackspace && inputValue.length >= this.maxLength && event.key !== 'Tab') {
         event.preventDefault();
       }
     } else {

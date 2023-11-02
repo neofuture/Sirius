@@ -51,13 +51,6 @@ export class ListingComponent implements OnInit {
   ngOnInit() {
     this.updateVariations();
     this.checkMatrixForErrors();
-    // const toastConfig = {
-    //   title: 'Testing',
-    //   body: ['Testing this stuff out'],
-    //   autoClose: 5000,
-    //   type: 'success'
-    // };
-    // this.toastService.newToast(toastConfig);
   }
 
   generateTableData(variationIndex: number, currentOptions: any[]) {
@@ -216,12 +209,12 @@ export class ListingComponent implements OnInit {
   }
 
   setVariationOption($event: FocusEvent, variation: variationInterface, i: number) {
-    variation.options[i] = ($event.target as HTMLInputElement).value;
+    variation.options[i] = ($event.target as HTMLInputElement).value.trim();
     this.updateVariations();
   }
 
   setVariation($event: FocusEvent, variation: variationInterface) {
-    variation.title = ($event.target as HTMLInputElement).value;
+    variation.title = ($event.target as HTMLInputElement).value.trim();
     this.updateVariations();
   }
 

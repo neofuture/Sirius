@@ -70,7 +70,7 @@ export class ListingComponent implements OnInit {
   generateBaseSkus() {
     this.baseSkus = [];
     for (let i = 0; i < this.tableData.length; i++) {
-      this.baseSkus.push(this.sku + this.notation + this.createSku(this.tableData[i]));
+      this.baseSkus.push(this.sku.trim() + this.notation + this.createSku(this.tableData[i]));
     }
   }
 
@@ -178,7 +178,7 @@ export class ListingComponent implements OnInit {
   createSku(row: any) {
     let sku = [];
     for (let key in row) {
-      sku.push(row[key].substring(0, this.characters));
+      sku.push(row[key].substring(0, this.characters).trim());
     }
     if (this.capitalise === "uppercase") {
       sku = sku.map((s) => s.toUpperCase());
@@ -271,5 +271,7 @@ export class ListingComponent implements OnInit {
     if (this.matrix[row] && Object.keys(this.matrix[row]).length === 0) {
       delete this.matrix[row];
     }
+
+    localStorage.setItem('matrix', JSON.stringify(this.matrix));
   }
 }

@@ -87,6 +87,7 @@ export class ListingComponent implements OnInit {
       this.variationTitle = '';
       this.updateVariations();
     }
+    this.checkMatrixForErrors();
   }
 
   removeVariation(variation: variationInterface) {
@@ -115,6 +116,7 @@ export class ListingComponent implements OnInit {
       });
       this.updateVariations();
     }
+    this.checkMatrixForErrors();
   }
 
   removeOption(variation: variationInterface, i: number) {
@@ -125,6 +127,7 @@ export class ListingComponent implements OnInit {
       return v;
     });
     this.updateVariations();
+    this.checkMatrixForErrors();
   }
 
   reset() {
@@ -208,12 +211,12 @@ export class ListingComponent implements OnInit {
     return count > 1;
   }
 
-  setVariationOption($event: FocusEvent, variation: variationInterface, i: number) {
+  setVariationOption($event: Event, variation: variationInterface, i: number) {
     variation.options[i] = ($event.target as HTMLInputElement).value.trim();
     this.updateVariations();
   }
 
-  setVariation($event: FocusEvent, variation: variationInterface) {
+  setVariation($event: Event, variation: variationInterface) {
     variation.title = ($event.target as HTMLInputElement).value.trim();
     this.updateVariations();
   }
@@ -246,6 +249,38 @@ export class ListingComponent implements OnInit {
       };
       this.toastService.newToast(toastConfig);
     }
+
+    let variationDuplicates = [];
+    const titleSet = new Set();
+    for (const item of this.variations) {
+      if (titleSet.has(item.title)) {
+        variationDuplicates.push(item.title);
+      }
+      titleSet.add(item.title);
+    }
+    if(variationDuplicates.length > 0) {
+      const toastConfig = {
+        title: 'Error',
+        body: ['The following variation is duplicated. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variations.'],
+        autoClose: 5000,
+        type: 'error'
+      };
+      this.toastService.newToast(toastConfig);
+    }
+
+  }
+
+  hasDuplicateTitles(titleToCheck: unknown) {
+    const titleSet = new Set();
+    for (const item of this.variations) {
+      if (item.title === titleToCheck) {
+        if (titleSet.has(titleToCheck)) {
+          return true;
+        }
+        titleSet.add(titleToCheck);
+      }
+    }
+    return false;
   }
 
   resetItem(element: string, row: string | number) {

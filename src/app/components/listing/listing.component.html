@@ -59,7 +59,9 @@
       <input type="text"
              value="{{ variation.title }}"
              (blur)="setVariation($event, variation)"
-             class="button-option">
+             (keydown.enter)="setVariation($event, variation)"
+             class="button-option"
+             [class.field-error]="hasDuplicateTitles(variation.title)">
       <button (click)="removeVariation(variation)" class="red">
         <i class="fas fa-minus"></i>
       </button>
@@ -71,6 +73,7 @@
         <input type="text"
                value="{{ variation.options[i] }}"
                (blur)="setVariationOption($event, variation, i)"
+               (keydown.enter)="setVariationOption($event, variation, i)"
                class="button-option">
         <button (click)="removeOption(variation, i)" class="red">
           <i class="fas fa-minus"></i>
@@ -94,7 +97,6 @@
     <input type="text"
            [(ngModel)]="variationTitle"
            (keydown.enter)="addVariation($event)"
-           (keydown.tab)="addVariation($event)"
            placeholder="Add new variation"
            class="button-option">
     <button (click)="addVariation()" class="green">

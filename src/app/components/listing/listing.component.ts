@@ -219,6 +219,7 @@ export class ListingComponent implements OnInit {
   setVariation($event: Event, variation: variationInterface) {
     variation.title = ($event.target as HTMLInputElement).value.trim();
     this.updateVariations();
+    this.checkMatrixForErrors();
   }
 
   checkMatrixForErrors() {

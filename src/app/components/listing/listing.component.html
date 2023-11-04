@@ -119,13 +119,13 @@
         <b>{{ variation.title }}</b>
       </td>
       <td>
-        <b>Price</b>
-      </td>
-      <td>
         <b>SKU</b>
       </td>
       <td>
         <b>EAN</b>
+      </td>
+      <td>
+        <b>Price</b>
       </td>
       <td class="center">
         <b>Status</b>
@@ -140,19 +140,6 @@
       <td *ngFor="let option of row">
         <div class="entry">
           <b>{{ option }}</b>
-        </div>
-      </td>
-      <td>
-        <div class="entry">
-          <input type="text"
-                 class="price"
-                 [class.button-options]="matrix[row] && matrix[row].price"
-                 value="{{matrix[row] && matrix[row].price || basePrice}}"
-                 (blur)="createMatrix('price', $event, row)"
-                 appDecimalValidator [decimalPlaces]="2">
-          <button class="blue" *ngIf="matrix[row] && matrix[row].price" (click)="resetItem('price', row)">
-            <i class="fas fa-undo"></i>
-          </button>
         </div>
       </td>
       <td>
@@ -178,6 +165,19 @@
                  [maxLength]="14"
                  class="ean">
           <button class="blue" *ngIf="matrix[row] && matrix[row].ean" (click)="resetItem('ean', row)">
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+      </td>
+      <td>
+        <div class="entry">
+          <input type="text"
+                 class="price"
+                 [class.button-options]="matrix[row] && matrix[row].price"
+                 value="{{matrix[row] && matrix[row].price || basePrice}}"
+                 (blur)="createMatrix('price', $event, row)"
+                 appDecimalValidator [decimalPlaces]="2">
+          <button class="blue" *ngIf="matrix[row] && matrix[row].price" (click)="resetItem('price', row)">
             <i class="fas fa-undo"></i>
           </button>
         </div>

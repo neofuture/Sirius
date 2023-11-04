@@ -58,10 +58,15 @@ input[type="text"] {
 
 select {
   border-radius: 4px;
-  padding: 4px 4px 4px 4px;
+  padding: 4px 18px 4px 4px;
   border: 1px solid var(--field-border-colour);
   -webkit-appearance: none;
   width: 100%;
+  position:relative;
+  background-image: url("/assets/images/down-chevron.png");
+  background-repeat: no-repeat;
+  background-size:10px;
+  background-position: right 6px center;
 }
 
 input[type="text"].button-options {

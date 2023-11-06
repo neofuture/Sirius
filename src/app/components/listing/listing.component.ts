@@ -249,7 +249,7 @@ export class ListingComponent implements OnInit {
       const toastConfig = {
         title: 'Error',
         body: ['The following SKU`s are duplicated.<br><br>' + duplicates.join('<br>')],
-        autoClose: 500000000,
+        autoClose: 5000,
         type: 'error'
       };
       this.toastService.newToast(toastConfig);
@@ -275,7 +275,7 @@ export class ListingComponent implements OnInit {
         const toastConfig = {
           title: 'Error',
           body: ['The variation '+item.title + ' has duplicate options. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variation options.'],
-          autoClose: 500000000,
+          autoClose: 5000,
           type: 'error'
         };
         this.toastService.newToast(toastConfig);
@@ -285,7 +285,7 @@ export class ListingComponent implements OnInit {
       const toastConfig = {
         title: 'Error',
         body: ['The following variation is duplicated. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variations.'],
-        autoClose: 500000000,
+        autoClose: 5000,
         type: 'error'
       };
       this.toastService.newToast(toastConfig);

@@ -197,13 +197,13 @@ export class ListingComponent implements OnInit {
     let count = 0;
 
     for (const key of Object.keys(this.matrix)) {
-      if (this.matrix[key].sku === sku) {
+      if (this.matrix[key].sku.toLowerCase() === sku.toLowerCase()) {
         count++;
       }
     }
 
     for (const item of this.baseSkus) {
-      if (item === sku) {
+      if (item.toLowerCase() === sku.toLowerCase()) {
         count++;
       }
     }

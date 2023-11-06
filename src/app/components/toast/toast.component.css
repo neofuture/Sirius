@@ -1,5 +1,5 @@
 :host(.toasts) {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   z-index: 999;

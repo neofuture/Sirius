@@ -74,7 +74,8 @@
                value="{{ variation.options[i] }}"
                (blur)="setVariationOption($event, variation, i)"
                (keydown.enter)="setVariationOption($event, variation, i)"
-               class="button-option">
+               class="button-option"
+               [class.field-error]="hasDuplicateOptions(variation, variation.options[i])">
         <button (click)="removeOption(variation, i)" class="red">
           <i class="fas fa-minus"></i>
         </button>

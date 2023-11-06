@@ -226,17 +226,21 @@ export class ListingComponent implements OnInit {
 
     let skus = [];
     for (const key of Object.keys(this.matrix)) {
-      skus.push(this.matrix[key].sku);
+      skus.push(this.matrix[key].sku.toLowerCase());
     }
 
     for (const item of this.baseSkus) {
-      skus.push(item);
+      skus.push(item.toLowerCase());
     }
 
     let duplicates = [];
     let unique = skus.filter((v, i, a) => a.indexOf(v) === i);
     for (const sku of unique) {
-      if (skus.filter((s) => s === sku).length > 1 && sku !== undefined && typeof sku !== undefined && sku !== '') {
+      if (skus.filter((s) =>
+        s.toLowerCase() === sku.toLowerCase()).length > 1 &&
+        sku.toLowerCase() !== undefined &&
+        typeof sku.toLowerCase() !== undefined &&
+        sku.toLowerCase() !== '') {
         duplicates.push(sku);
       }
     }
@@ -245,7 +249,7 @@ export class ListingComponent implements OnInit {
       const toastConfig = {
         title: 'Error',
         body: ['The following SKU`s are duplicated.<br><br>' + duplicates.join('<br>')],
-        autoClose: 5000,
+        autoClose: 500000000,
         type: 'error'
       };
       this.toastService.newToast(toastConfig);
@@ -255,15 +259,33 @@ export class ListingComponent implements OnInit {
     const titleSet = new Set();
     for (const item of this.variations) {
       if (titleSet.has(item.title)) {
-        variationDuplicates.push(item.title);
+        variationDuplicates.push(item.title.toLowerCase());
       }
-      titleSet.add(item.title);
+      titleSet.add(item.title.toLowerCase());
+
+      for(const option of item.options) {
+        variationDuplicates = [];
+        if(this.hasDuplicateOptions(item, option)) {
+          variationDuplicates.push(option);
+        }
+      }
+      if(variationDuplicates.length > 0) {
+        console.log(item.title, variationDuplicates);
+
+        const toastConfig = {
+          title: 'Error',
+          body: ['The variation '+item.title + ' has duplicate options. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variation options.'],
+          autoClose: 500000000,
+          type: 'error'
+        };
+        this.toastService.newToast(toastConfig);
+      }
     }
     if(variationDuplicates.length > 0) {
       const toastConfig = {
         title: 'Error',
         body: ['The following variation is duplicated. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variations.'],
-        autoClose: 5000,
+        autoClose: 500000000,
         type: 'error'
       };
       this.toastService.newToast(toastConfig);
@@ -271,14 +293,14 @@ export class ListingComponent implements OnInit {
 
   }
 
-  hasDuplicateTitles(titleToCheck: unknown) {
+  hasDuplicateTitles(titleToCheck: string) {
     const titleSet = new Set();
     for (const item of this.variations) {
-      if (item.title === titleToCheck) {
-        if (titleSet.has(titleToCheck)) {
+      if (item.title.toLowerCase() === titleToCheck.toLowerCase()) {
+        if (titleSet.has(titleToCheck.toLowerCase())) {
           return true;
         }
-        titleSet.add(titleToCheck);
+        titleSet.add(titleToCheck.toLowerCase());
       }
     }
     return false;
@@ -309,5 +331,19 @@ export class ListingComponent implements OnInit {
     }
 
     localStorage.setItem('matrix', JSON.stringify(this.matrix));
+  }
+
+  hasDuplicateOptions(variation: variationInterface, string: string) {
+    const optionSet = new Set();
+    for (const item of variation.options) {
+      if (item.toLowerCase() === string.toLowerCase()) {
+        if (optionSet.has(string.toLowerCase())) {
+          return true;
+        }
+        optionSet.add(string.toLowerCase());
+      }
+    }
+    return false;
+
   }
 }

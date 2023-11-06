@@ -1,2 +1,4 @@
-<app-toast *ngFor="let toastItem of objectValues(toastList)" [toastItem]="toastItem"></app-toast>
+<div class="toasts">
+  <app-toast *ngFor="let toastItem of objectValues(toastList)" [toastItem]="toastItem"></app-toast>
+</div>
 <router-outlet></router-outlet>

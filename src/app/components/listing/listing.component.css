@@ -54,7 +54,6 @@ section.active-large {
 }
 
 .matrix-table table {
-  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -325,4 +324,8 @@ hr {
 
 .pad-left {
   margin-right: 8px;
+}
+
+.status-field {
+  width: 80px !important;
 }

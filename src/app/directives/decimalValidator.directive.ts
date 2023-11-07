@@ -50,7 +50,9 @@ export class DecimalValidatorDirective {
     const parts = inputValue.split('.');
 
     if (parts.length === 1) {
-      inputValue = inputValue + ".00";
+      if(this.decimalPlaces !== 0) {
+        inputValue = inputValue + ".00";
+      }
     } else if (parts.length === 2) {
       if (parts[1].length === 1) {
         inputValue = inputValue + "0";

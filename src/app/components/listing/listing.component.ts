@@ -41,6 +41,10 @@ export class ListingComponent implements OnInit {
 
   @ViewChild('rootElement', {static: false}) rootElement: ElementRef | undefined;
   baseSkus: any;
+  activePane: number = 2;
+  brand: string = '';
+  model: string = '';
+  colour: string = '';
 
   constructor(
     private toastService: ToastService,
@@ -141,6 +145,13 @@ export class ListingComponent implements OnInit {
     if (element === 'price' && $event.target.value == this.basePrice) {
       if (this.matrix[row] && this.matrix[row].price) {
         delete this.matrix[row].price;
+      }
+      reset = true;
+    }
+
+    if (element === 'quantity' && $event.target.value == '') {
+      if (this.matrix[row] && this.matrix[row].quantity) {
+        delete this.matrix[row].quantity;
       }
       reset = true;
     }
@@ -313,6 +324,12 @@ export class ListingComponent implements OnInit {
       }
     }
 
+    if (element === 'quantity') {
+      if (this.matrix[row] && this.matrix[row].quantity) {
+        delete this.matrix[row].quantity;
+      }
+    }
+
     if (element === 'ean') {
       if (this.matrix[row] && this.matrix[row].ean) {
         delete this.matrix[row].ean;
@@ -345,5 +362,9 @@ export class ListingComponent implements OnInit {
     }
     return false;
 
+  }
+
+  setActivePane(number: number) {
+    this.activePane = number;
   }
 }

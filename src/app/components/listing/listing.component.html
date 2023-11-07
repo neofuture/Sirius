@@ -1,5 +1,8 @@
-<section (click)="setActivePane(2)" [class.active]="activePane===2">
+<section (click)="setActivePane($event, 2)" [class.active]="activePane===2">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div class="next" [class.active]="activePane===2">
+    <button (click)="setActivePane($event, 3)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
+  </div>
   <h2>Item Specifics</h2>
 
   <div class="pane-content">
@@ -75,8 +78,14 @@
 
 </section>
 
-<section (click)="setActivePane(3)" [class.active]="activePane===3">
+<section (click)="setActivePane($event, 3)" [class.active]="activePane===3">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div class="next" [class.active]="activePane===3">
+    <button (click)="setActivePane($event, 2)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
+    <button (click)="setActivePane($event, (variations.length > 0 ? 4: 5))">Next <i
+      class="pad-right fa fa-chevron-circle-right"></i></button>
+  </div>
+
   <h2>Variations</h2>
   <div class="pane-content">
 
@@ -95,7 +104,7 @@
             <i class="fas fa-minus"></i>
           </button>
         </div>
-
+        <br>
         <h4>{{ variation.title }} Options</h4>
         <div *ngFor="let option of variation.options; let i = index">
           <div class="entry">
@@ -121,6 +130,7 @@
             <i class="fas fa-plus"></i>
           </button>
         </div>
+
       </div>
 
       <div class="entry" *ngIf="maxOptions > variations.length">
@@ -139,12 +149,18 @@
     </div>
   </div>
 </section>
-<section (click)="setActivePane(4)" [class.active-large]="activePane===4" *ngIf="variations.length > 0">
+<section (click)="setActivePane($event, 4)" [class.active-large]="activePane===4" *ngIf="variations.length > 0">
   <div class="status green-status"><i class="fa fa-check"></i> Complete</div>
+  <div class="next" [class.active]="activePane===4">
+    <button (click)="setActivePane($event, 3)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
+    <button (click)="setActivePane($event, 5)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
+  </div>
   <ng-container *ngIf="variations.length > 0">
     <h2>Product Variations Specifics</h2>
     <div class="pane-content">
-      <div>Configure the base settings for your variations, these are editable once you create all your variations and options.</div>
+      <div>Configure the base settings for your variations, these are editable once you create all your variations and
+        options.
+      </div>
       <div class="variation-settings">
         <div>
           <h4>Base Price</h4>
@@ -246,7 +262,7 @@
             <div class="entry">
               <input type="text"
                      [class.button-options]="matrix[row] && matrix[row].ean"
-                     value="{{matrix[row] && matrix[row].ean || ''}}"
+                     value="{{matrix[row] && matrix[row].ean || ean}}"
                      (blur)="createMatrix('ean', $event, row)"
                      appEanValidator
                      [maxLength]="14">
@@ -295,34 +311,50 @@
   </ng-container>
 </section>
 
-<section (click)="setActivePane(5)" [class.active]="activePane===5">
+<section (click)="setActivePane($event, 5)" [class.active]="activePane===5">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div class="next" [class.active]="activePane===5">
+    <button (click)="setActivePane($event, (variations.length > 0 ? 4 : 3))">
+      <i class="pad-left fa fa-chevron-circle-left"></i> Prev
+    </button>
+    <button (click)="setActivePane($event, 6)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
+  </div>
   <h2>Images &amp; Video</h2>
   <div class="pane-content">
     To be completed
   </div>
 </section>
 
-<section (click)="setActivePane(6)" [class.active]="activePane===6">
+<section (click)="setActivePane($event, 6)" [class.active]="activePane===6">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div class="next" [class.active]="activePane===6">
+    <button (click)="setActivePane($event, 5)"><i class="pad-left fa fa-chevron-circle-left"></i>
+      Prev
+    </button>
+    <button (click)="setActivePane($event, 7)">Next <i
+      class="pad-right fa fa-chevron-circle-right"></i></button>
+  </div>
   <h2>Listing Specifics</h2>
   <div class="pane-content">
     To be completed
   </div>
 </section>
 
-<section (click)="setActivePane(7)" [class.active]="activePane===7">
+<section (click)="setActivePane($event, 7)" [class.active]="activePane===7">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div class="next" [class.active]="activePane===7">
+    <button (click)="setActivePane($event, 6)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
+  </div>
   <h2>Shipping Details</h2>
   <div class="pane-content">
     To be completed
   </div>
 </section>
 
-<pre>{{ matrix | json}}</pre>
-<pre>{{ baseSkus | json }}</pre>
+<!--<pre>{{ matrix | json}}</pre>-->
+<!--<pre>{{ baseSkus | json }}</pre>-->
 
-<div><br><br><br></div>
+<div><br><br></div>
 
 <ng-template #missingData>
   <div class="error">

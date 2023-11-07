@@ -1,18 +1,19 @@
 :host(.container) {
   width: 100%;
   display: flex;
-  font-size:14px;
+  font-size: 14px;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
 }
 
 section {
-  border:1px solid var(--field-border-colour);
+  border: 1px solid var(--field-border-colour);
   border-radius: 8px;
-  overflow:hidden;
+  overflow: hidden;
   max-height: 60px;
   transition: all 300ms;
   position: relative;
+  padding-bottom: 40px;
 }
 
 .status {
@@ -45,15 +46,16 @@ section.active-large {
   max-height: 2000px;
   transition: all 300ms;
 }
+
 .matrix-table {
-  max-height:calc(2000px - 300px);
+  max-height: calc(2000px - 300px);
   overflow-x: scroll;
-  padding:12px;
+  padding: 12px;
 }
 
 .matrix-table table {
-  width:100%;
-  margin-bottom:10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .variations {
@@ -78,7 +80,7 @@ section.active-large {
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-top:12px;
+  margin-top: 12px;
 }
 
 .settings > div {
@@ -119,10 +121,10 @@ select {
   border: 1px solid var(--field-border-colour);
   -webkit-appearance: none;
   width: 100%;
-  position:relative;
+  position: relative;
   background-image: url("/assets/images/down-chevron.png");
   background-repeat: no-repeat;
-  background-size:10px;
+  background-size: 10px;
   background-position: right 6px center;
 }
 
@@ -172,7 +174,7 @@ button {
   height: 20px;
   position: absolute;
   right: 4px;
-  font-size:12px;
+  font-size: 12px;
 }
 
 .red {
@@ -273,25 +275,54 @@ input[type=number] {
 }
 
 select {
-  width:100%;
+  width: 100%;
 }
 
 h2 {
-  font-size:22px;
-  padding:12px;
+  font-size: 22px;
+  padding: 12px;
 }
 
 .pane-content {
-  padding:12px;
+  padding: 12px;
 }
 
 hr {
-  border:1px solid var(--blue-rule);
-  background-color:transparent;
-  border-bottom:0;
+  border: 1px solid var(--blue-rule);
+  background-color: transparent;
+  border-bottom: 0;
   margin: 20px -12px 12px -12px;
 }
 
 .red-asterisk {
   color: var(--red);
+}
+
+.next {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transition: all 300ms;
+}
+
+.next.active {
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.next button {
+  width: 70px;
+}
+
+.pad-right {
+  margin-left: 8px;
+}
+
+.pad-left {
+  margin-right: 8px;
 }

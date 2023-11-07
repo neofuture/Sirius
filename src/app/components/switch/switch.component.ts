@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {Component, Input} from "@angular/core";
+import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {noop} from "rxjs";
 
 @Component({
@@ -7,6 +7,9 @@ import {noop} from "rxjs";
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.css'],
   standalone: true,
+  imports: [
+    FormsModule
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -20,7 +23,7 @@ export class SwitchComponent implements ControlValueAccessor{
   @Input() checked: boolean = false;
   protected onChange: (value: boolean) => void = () => noop;
   protected onTouched: () => void = () => noop;
-  protected toggle: boolean = false;
+  value: boolean = false;
 
   constructor() {
   }
@@ -40,9 +43,6 @@ export class SwitchComponent implements ControlValueAccessor{
   }
 
   writeValue(obj: any): void {
-    this.toggle = obj;
+    this.value = obj;
   }
-
-
-
 }

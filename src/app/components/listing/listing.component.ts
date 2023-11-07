@@ -47,8 +47,8 @@ export class ListingComponent implements OnInit {
   brand: string = 'Apple';
   model: string = 'iPad Pro 12.9" 2020';
   colour: string = 'Space Grey';
-  unbranded: boolean = false;
-  ean: string = '8574635141762542';
+  unbranded: boolean = true;
+  ean: string = '56578765654312';
   mpn: string = 'MK1673';
 
   constructor(
@@ -369,7 +369,11 @@ export class ListingComponent implements OnInit {
 
   }
 
-  setActivePane(number: number) {
-    this.activePane = number;
+  setActivePane(event: Event, number: number) {
+    if(this.activePane !== number) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.activePane = number;
+    }
   }
 }

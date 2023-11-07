@@ -197,7 +197,7 @@ export class ListingComponent implements OnInit {
     let count = 0;
 
     for (const key of Object.keys(this.matrix)) {
-      if (this.matrix[key].sku.toLowerCase() === sku.toLowerCase()) {
+      if (this.matrix[key].sku && this.matrix[key].sku.toLowerCase() === sku.toLowerCase()) {
         count++;
       }
     }
@@ -226,7 +226,9 @@ export class ListingComponent implements OnInit {
 
     let skus = [];
     for (const key of Object.keys(this.matrix)) {
-      skus.push(this.matrix[key].sku.toLowerCase());
+      if(this.matrix[key].sku) {
+        skus.push(this.matrix[key].sku.toLowerCase());
+      }
     }
 
     for (const item of this.baseSkus) {
@@ -270,8 +272,6 @@ export class ListingComponent implements OnInit {
         }
       }
       if(variationDuplicates.length > 0) {
-        console.log(item.title, variationDuplicates);
-
         const toastConfig = {
           title: 'Error',
           body: ['The variation '+item.title + ' has duplicate options. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variation options.'],

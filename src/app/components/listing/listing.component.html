@@ -148,7 +148,7 @@
           <input type="text"
                  class="sku"
                  [class.button-options]="matrix[row] && matrix[row].sku"
-                 value="{{matrix[row] && matrix[row].sku.trim() || sku.trim() + notation + createSku(row)}}"
+                 value="{{matrix[row] && matrix[row].sku || sku.trim() + notation + createSku(row)}}"
                  (blur)="createMatrix('sku', $event, row)"
                  [class.field-error]="matrixDuplication(matrix[row] && matrix[row].sku || sku + notation + createSku(row))">
           <button class="blue" *ngIf="matrix[row] && matrix[row].sku" (click)="resetItem('sku', row)">

@@ -5,6 +5,7 @@ import {variationInterface} from "../../models/variations.interface";
 import {DecimalValidatorDirective} from "../../directives/decimalValidator.directive";
 import {EanValidatorDirective} from "../../directives/eanValidator.directive";
 import {ToastService} from "../../services/toast.service";
+import {SwitchComponent} from "../switch/switch.component";
 
 @Component({
   selector: 'app-listing',
@@ -17,7 +18,8 @@ import {ToastService} from "../../services/toast.service";
     NgIf,
     DecimalPipe,
     DecimalValidatorDirective,
-    EanValidatorDirective
+    EanValidatorDirective,
+    SwitchComponent
   ],
   standalone: true
 })
@@ -42,9 +44,12 @@ export class ListingComponent implements OnInit {
   @ViewChild('rootElement', {static: false}) rootElement: ElementRef | undefined;
   baseSkus: any;
   activePane: number = 2;
-  brand: string = '';
-  model: string = '';
-  colour: string = '';
+  brand: string = 'Apple';
+  model: string = 'iPad Pro 12.9" 2020';
+  colour: string = 'Space Grey';
+  unbranded: boolean = false;
+  ean: string = '8574635141762542';
+  mpn: string = 'MK1673';
 
   constructor(
     private toastService: ToastService,
@@ -74,7 +79,7 @@ export class ListingComponent implements OnInit {
   generateBaseSkus() {
     this.baseSkus = [];
     for (let i = 0; i < this.tableData.length; i++) {
-      this.baseSkus.push(this.sku.trim() + this.notation + this.createSku(this.tableData[i]));
+      this.baseSkus.push((this.sku.trim() ? this.sku.trim() + this.notation :'') + this.createSku(this.tableData[i]));
     }
   }
 

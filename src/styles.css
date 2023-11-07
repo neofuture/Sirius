@@ -23,7 +23,9 @@
   --search-border-colour-focused: #2978b6;
   --searh-hover-colour: #dddddd;
 
-  --hightlight-row: #e4ecff
+  --hightlight-row: #e4ecff;
+
+  --blue-rule: #bcbdea;
 }
 
 body {

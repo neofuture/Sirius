@@ -22,18 +22,31 @@ section {
   padding: 4px 12px 4px 12px;
   font-size: 12px;
   color: var(--white);
-  background-color: var(--red);
   border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.status.red-status {
+  background-color: var(--red);
+}
+
+.status.green-status {
+  background-color: var(--green);
 }
 
 section.active {
   background-color: var(--background-light-colour);
-  max-height: 900px;
+  max-height: 400px;
   transition: all 300ms;
 }
 
+section.active-large {
+  background-color: var(--background-light-colour);
+  max-height: 2000px;
+  transition: all 300ms;
+}
 .matrix-table {
-  max-height:600px;
+  max-height:calc(2000px - 300px);
   overflow-x: scroll;
   padding:12px;
 }
@@ -59,13 +72,17 @@ section.active {
   padding: 0 6px;
 }
 
-.settings {
+.settings, .variation-settings {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
   width: 100%;
   margin-top:12px;
+}
+
+.settings > div {
+  flex: 1 1 0px;
 }
 
 .sku div {
@@ -266,4 +283,15 @@ h2 {
 
 .pane-content {
   padding:12px;
+}
+
+hr {
+  border:1px solid var(--blue-rule);
+  background-color:transparent;
+  border-bottom:0;
+  margin: 20px -12px 12px -12px;
+}
+
+.red-asterisk {
+  color: var(--red);
 }

@@ -50,6 +50,7 @@ export class ListingComponent implements OnInit {
   unbranded: boolean = true;
   ean: string = '56578765654312';
   mpn: string = 'MK1673';
+  quantity: number = 1;
 
   constructor(
     private toastService: ToastService,
@@ -154,14 +155,14 @@ export class ListingComponent implements OnInit {
       reset = true;
     }
 
-    if (element === 'quantity' && $event.target.value == '') {
+    if (element === 'quantity' && $event.target.value == this.quantity) {
       if (this.matrix[row] && this.matrix[row].quantity) {
         delete this.matrix[row].quantity;
       }
       reset = true;
     }
 
-    if (element === 'ean' && $event.target.value == '') {
+    if (element === 'ean' && $event.target.value === this.ean) {
       if (this.matrix[row] && this.matrix[row].ean) {
         delete this.matrix[row].ean;
       }

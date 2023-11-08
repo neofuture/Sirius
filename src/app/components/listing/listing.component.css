@@ -14,6 +14,7 @@ section {
   transition: all 300ms;
   position: relative;
   padding-bottom: 40px;
+  user-select: none;
 }
 
 .status {

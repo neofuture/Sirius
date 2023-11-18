@@ -8,19 +8,21 @@ import {Title} from "@angular/platform-browser";
 import {AutomotiveComponent} from "./automotive/automotive.component";
 import {CategoryComponent} from "./category/category.component";
 import {environment} from "../../../environments/environment";
+import {StandardFooterComponent} from "../../partials/standard-footer/standard-footer.component";
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
-  imports: [
-    SectionComponent,
-    JsonPipe,
-    StandardHeaderComponent,
-    AutomotiveComponent,
-    CategoryComponent,
-    NgIf
-  ],
+    imports: [
+        SectionComponent,
+        JsonPipe,
+        StandardHeaderComponent,
+        AutomotiveComponent,
+        CategoryComponent,
+        NgIf,
+        StandardFooterComponent
+    ],
   standalone: true
 })
 

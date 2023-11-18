@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {CategoryRouteGuard} from "./guards/category.guard";
 import {HomeResolver} from "./resolvers/home.resolver";
 import {ItemResolver} from "./resolvers/item.resolver";
@@ -11,12 +11,44 @@ export const routes: Routes = [
     resolve: {listingData: HomeResolver}
   },
   {
+    path: 'about',
+    loadComponent: () => import('./journeys/about/about.component').then(m => m.AboutComponent),
+  },
+  {
+    path: 'faq',
+    loadComponent: () => import('./journeys/faq/faq.component').then(m => m.FaqComponent),
+  },
+  {
+    path: 'fees',
+    loadComponent: () => import('./journeys/fees/fees.component').then(m => m.FeesComponent),
+  },
+  {
+    path: 'prohibited',
+    loadComponent: () => import('./journeys/prohibited/prohibited.component').then(m => m.ProhibitedComponent),
+  },
+  {
+    path: 'terms',
+    loadComponent: () => import('./journeys/terms/terms.component').then(m => m.TermsComponent),
+  },
+  {
+    path: 'privacy',
+    loadComponent: () => import('./journeys/privacy/privacy.component').then(m => m.PrivacyComponent),
+  },
+  {
+    path: 'cookies',
+    loadComponent: () => import('./journeys/cookies/cookies.component').then(m => m.CookiesComponent),
+  },
+  {
     path: 'sell',
     loadComponent: () => import('./journeys/sell/sell.component').then(m => m.SellComponent),
   },
   {
     path: 'search',
     loadComponent: () => import('./journeys/search/search.component').then(m => m.SearchComponent),
+  },
+  {
+    path: '404',
+    loadComponent: () => import('./journeys/not-found/not-found.component').then(m => m.NotFoundComponent),
   },
   {
     path: 'item/:item/:slug',

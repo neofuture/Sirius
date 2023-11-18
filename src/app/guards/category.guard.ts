@@ -21,7 +21,7 @@ export class CategoryRouteGuard {
     if (this.validPaths.includes(dynamicPath)) {
       return true;
     } else {
-      this.router.navigate(['/']).then();
+      this.router.navigate(['404']).then();
       return false;
     }
   };

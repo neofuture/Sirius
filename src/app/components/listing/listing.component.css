@@ -300,10 +300,10 @@ hr {
 
 .next {
   position: absolute;
-  bottom: 10px;
-  width: 100%;
+  bottom: 16px;
+  width: calc(100% - 16px);
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
   opacity: 0;

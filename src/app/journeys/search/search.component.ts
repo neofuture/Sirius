@@ -9,21 +9,23 @@ import {LoadingComponent} from "../../components/loading/loading.component";
 import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
 import {Title} from "@angular/platform-browser";
 import {StoredSearchInterface} from "../../models/stored-search.interface";
+import {StandardFooterComponent} from "../../partials/standard-footer/standard-footer.component";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  imports: [
-    SectionComponent,
-    StandardHeaderComponent,
-    HttpClientModule,
-    JsonPipe,
-    LoadingComponent,
-    NgIf,
-    NgForOf,
-    SanitiseUrlPipe
-  ],
+    imports: [
+        SectionComponent,
+        StandardHeaderComponent,
+        HttpClientModule,
+        JsonPipe,
+        LoadingComponent,
+        NgIf,
+        NgForOf,
+        SanitiseUrlPipe,
+        StandardFooterComponent
+    ],
   standalone: true
 })
 

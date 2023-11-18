@@ -7,20 +7,22 @@ import {Title} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {LoadingComponent} from "../../components/loading/loading.component";
 import {ItemInterface} from "../../models/item.interface";
+import {StandardFooterComponent} from "../../partials/standard-footer/standard-footer.component";
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css'],
-  imports: [
-    SectionComponent,
-    JsonPipe,
-    AsyncPipe,
-    StandardHeaderComponent,
-    NgIf,
-    LoadingComponent,
-    NgForOf
-  ],
+    imports: [
+        SectionComponent,
+        JsonPipe,
+        AsyncPipe,
+        StandardHeaderComponent,
+        NgIf,
+        LoadingComponent,
+        NgForOf,
+        StandardFooterComponent
+    ],
   standalone: true
 })
 

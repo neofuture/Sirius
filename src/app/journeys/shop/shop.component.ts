@@ -4,6 +4,7 @@ import {JsonPipe, NgForOf} from "@angular/common";
 import {SectionComponent} from "../../components/section/section.component";
 import {StandardHeaderComponent} from "../../partials/standard-header/standard-header.component";
 import {ShopIneterface} from "../../models/shop.interface";
+import {StandardFooterComponent} from "../../partials/standard-footer/standard-footer.component";
 
 @Component({
   selector: 'app-shop',
@@ -14,7 +15,8 @@ import {ShopIneterface} from "../../models/shop.interface";
     JsonPipe,
     NgForOf,
     SectionComponent,
-    StandardHeaderComponent
+    StandardHeaderComponent,
+    StandardFooterComponent
   ]
 })
 

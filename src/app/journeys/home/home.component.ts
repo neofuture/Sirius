@@ -8,6 +8,7 @@ import {JsonPipe, NgForOf} from "@angular/common";
 import {SanitiseUrlPipe} from "../../pipes/sanitise-url.pipe";
 import {CarouselComponent} from "../../components/carousel/carousel.component";
 import {ListingsInterface} from "../../models/listings.interface";
+import {StandardFooterComponent} from "../../partials/standard-footer/standard-footer.component";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +20,8 @@ import {ListingsInterface} from "../../models/listings.interface";
     JsonPipe,
     NgForOf,
     SanitiseUrlPipe,
-    CarouselComponent
+    CarouselComponent,
+    StandardFooterComponent
   ],
   standalone: true
 })

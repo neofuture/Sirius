@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /api/
+DirectoryIndex /index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /api/index.php [L]
+SetEnv APPLICATION_ENV "development"
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

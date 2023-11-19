@@ -6,6 +6,8 @@ import {DecimalValidatorDirective} from "../../directives/decimalValidator.direc
 import {EanValidatorDirective} from "../../directives/eanValidator.directive";
 import {ToastService} from "../../services/toast.service";
 import {SwitchComponent} from "../switch/switch.component";
+import {FileManagerComponent} from "../file-manager/file-manager.component";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-listing',
@@ -19,7 +21,9 @@ import {SwitchComponent} from "../switch/switch.component";
     DecimalPipe,
     DecimalValidatorDirective,
     EanValidatorDirective,
-    SwitchComponent
+    SwitchComponent,
+    FileManagerComponent,
+    HttpClientModule
   ],
   standalone: true
 })
@@ -33,7 +37,7 @@ export class ListingComponent implements OnInit {
   variationTitle: string = '';
   variations: variationInterface[] = localStorage.getItem('variations') ? JSON.parse(localStorage.getItem('variations') || '') : []
   matrix: any = localStorage.getItem('matrix') ? JSON.parse(localStorage.getItem('matrix') || '') : {}
-
+  imagePaths: any = localStorage.getItem('imagePaths') ? JSON.parse(localStorage.getItem('imagePaths') || '') : {};
   tableData: any[] = [];
   sku: string = 'SKU001';
   notation: string = '-';
@@ -42,8 +46,18 @@ export class ListingComponent implements OnInit {
   capitalise: string = "uppercase";
 
   @ViewChild('rootElement', {static: false}) rootElement: ElementRef | undefined;
+
+  @ViewChild('pane1', {static: false}) pane1: ElementRef | undefined;
+  @ViewChild('pane2', {static: false}) pane2: ElementRef | undefined;
+  @ViewChild('pane3', {static: false}) pane3: ElementRef | undefined;
+  @ViewChild('pane4', {static: false}) pane4: ElementRef | undefined;
+  @ViewChild('pane5', {static: false}) pane5: ElementRef | undefined;
+  @ViewChild('pane6', {static: false}) pane6: ElementRef | undefined;
+  @ViewChild('pane7', {static: false}) pane7: ElementRef | undefined;
+  @ViewChild('pane8', {static: false}) pane8: ElementRef | undefined;
+
   baseSkus: any;
-  activePane: number = 2;
+  activePane: number = 5;
   brand: string = 'Apple';
   model: string = 'iPad Pro 12.9" 2020';
   colour: string = 'Space Grey';
@@ -52,8 +66,10 @@ export class ListingComponent implements OnInit {
   mpn: string = 'MK1673';
   quantity: number = 1;
 
+
   constructor(
     private toastService: ToastService,
+    private http: HttpClient
   ) {
 
   }
@@ -80,7 +96,7 @@ export class ListingComponent implements OnInit {
   generateBaseSkus() {
     this.baseSkus = [];
     for (let i = 0; i < this.tableData.length; i++) {
-      this.baseSkus.push((this.sku.trim() ? this.sku.trim() + this.notation :'') + this.createSku(this.tableData[i]));
+      this.baseSkus.push((this.sku.trim() ? this.sku.trim() + this.notation : '') + this.createSku(this.tableData[i]));
     }
   }
 
@@ -243,20 +259,23 @@ export class ListingComponent implements OnInit {
 
     let skus = [];
     for (const key of Object.keys(this.matrix)) {
-      if(this.matrix[key].sku) {
+      if (this.matrix[key].sku) {
         skus.push(this.matrix[key].sku.toLowerCase());
       }
     }
 
-    for (const item of this.baseSkus) {
-      skus.push(item.toLowerCase());
+    if (this.baseSkus) {
+      for (const item of this.baseSkus) {
+        skus.push(item.toLowerCase());
+      }
     }
+
 
     let duplicates = [];
     let unique = skus.filter((v, i, a) => a.indexOf(v) === i);
     for (const sku of unique) {
       if (skus.filter((s) =>
-        s.toLowerCase() === sku.toLowerCase()).length > 1 &&
+          s.toLowerCase() === sku.toLowerCase()).length > 1 &&
         sku.toLowerCase() !== undefined &&
         typeof sku.toLowerCase() !== undefined &&
         sku.toLowerCase() !== '') {
@@ -282,23 +301,23 @@ export class ListingComponent implements OnInit {
       }
       titleSet.add(item.title.toLowerCase());
 
-      for(const option of item.options) {
+      for (const option of item.options) {
         variationDuplicates = [];
-        if(this.hasDuplicateOptions(item, option)) {
+        if (this.hasDuplicateOptions(item, option)) {
           variationDuplicates.push(option);
         }
       }
-      if(variationDuplicates.length > 0) {
+      if (variationDuplicates.length > 0) {
         const toastConfig = {
           title: 'Error',
-          body: ['The variation '+item.title + ' has duplicate options. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variation options.'],
+          body: ['The variation ' + item.title + ' has duplicate options. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variation options.'],
           autoClose: 5000,
           type: 'error'
         };
         this.toastService.newToast(toastConfig);
       }
     }
-    if(variationDuplicates.length > 0) {
+    if (variationDuplicates.length > 0) {
       const toastConfig = {
         title: 'Error',
         body: ['The following variation is duplicated. ' + variationDuplicates.join('<br>') + '<br><br>Please correct your variations.'],
@@ -371,10 +390,67 @@ export class ListingComponent implements OnInit {
   }
 
   setActivePane(event: Event, number: number) {
-    if(this.activePane !== number) {
+    if (this.activePane !== number) {
       event.preventDefault();
       event.stopPropagation();
       this.activePane = number;
+      setTimeout(() => {
+        // @ts-ignore
+        const element = document.getElementById('pane' + number).offsetTop - 16;
+        window.scroll({top: element, left: 0, behavior: 'smooth'});
+      }, 300);
+
     }
+  }
+
+  setFilename(item: number, filename: string) {
+    if (filename === null) {
+      delete this.imagePaths[item];
+    } else {
+      this.imagePaths[item] = filename;
+    }
+    localStorage.setItem('imagePaths', JSON.stringify(this.imagePaths));
+  }
+
+  resetListing() {
+    for (const key in this.imagePaths) {
+      if (this.imagePaths.hasOwnProperty(key)) {
+        this.removeImage(this.imagePaths[key]);
+      }
+    }
+
+    this.variations = [];
+    this.matrix = {};
+    this.imagePaths = {};
+    this.updateVariations();
+    localStorage.removeItem('matrix');
+    localStorage.removeItem('imagePaths');
+    localStorage.removeItem('variations');
+    const toastConfig = {
+      title: 'Success',
+      body: ['Listing reset successfully'],
+      autoClose: 5000,
+      type: 'success'
+    };
+    this.toastService.newToast(toastConfig);
+
+  }
+
+  private removeImage(filename: any) {
+    this.http.delete('https://sirius.carlfearby.co.uk/api/v1/listing/image?path=' + filename).subscribe((event: any) => {
+      console.log(event);
+    });
+  }
+
+  hasImagePaths() {
+    return Object.keys(this.imagePaths).length > 0;
+  }
+
+  createArray(number: number) {
+    return Array(number);
+  }
+
+  countImages() {
+    return Object.keys(this.imagePaths).length;
   }
 }

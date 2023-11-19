@@ -38,7 +38,7 @@ section {
 
 section.active {
   background-color: var(--background-light-colour);
-  max-height: 400px;
+  max-height: 1600px;
   transition: all 300ms;
 }
 
@@ -330,3 +330,16 @@ hr {
 .status-field {
   width: 80px !important;
 }
+
+.images-container {
+  display: block;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media only screen and (min-width: 40rem) {
+  .images-container {
+    display: flex;
+  }
+}
+

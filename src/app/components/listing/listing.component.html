@@ -1,5 +1,5 @@
-<section (click)="setActivePane($event, 2)" [class.active]="activePane===2">
-  <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+<section (click)="setActivePane($event, 2)" [class.active]="activePane===2" id="pane2">
+  <div class="status green-status"><i class="fa fa-check"></i> Complete</div>
   <div class="next" [class.active]="activePane===2">
     <button (click)="setActivePane($event, 3)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
   </div>
@@ -78,8 +78,8 @@
 
 </section>
 
-<section (click)="setActivePane($event, 3)" [class.active]="activePane===3">
-  <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+<section (click)="setActivePane($event, 3)" [class.active]="activePane===3" id="pane3">
+  <div class="status green-status"><i class="fa fa-check"></i> Complete</div>
   <div class="next" [class.active]="activePane===3">
     <button (click)="setActivePane($event, 2)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
     <button (click)="setActivePane($event, (variations.length > 0 ? 4: 5))">Next <i
@@ -149,7 +149,8 @@
     </div>
   </div>
 </section>
-<section (click)="setActivePane($event, 4)" [class.active-large]="activePane===4" *ngIf="variations.length > 0">
+
+<section (click)="setActivePane($event, 4)" [class.active-large]="activePane===4" *ngIf="variations.length > 0" id="pane4">
   <div class="status green-status"><i class="fa fa-check"></i> Complete</div>
   <div class="next" [class.active]="activePane===4">
     <button (click)="setActivePane($event, 3)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
@@ -311,21 +312,28 @@
   </ng-container>
 </section>
 
-<section (click)="setActivePane($event, 5)" [class.active]="activePane===5">
-  <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+<section (click)="setActivePane($event, 5)" [class.active]="activePane===5"  id="pane5">
+  <div *ngIf="!hasImagePaths()" class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
+  <div *ngIf="hasImagePaths()" class="status green-status"><i class="fa fa-check"></i> Complete</div>
   <div class="next" [class.active]="activePane===5">
     <button (click)="setActivePane($event, (variations.length > 0 ? 4 : 3))">
       <i class="pad-left fa fa-chevron-circle-left"></i> Prev
     </button>
     <button (click)="setActivePane($event, 6)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
   </div>
-  <h2>Images &amp; Video</h2>
+  <h2>Images &amp; Video ({{ countImages()}}/16)</h2>
   <div class="pane-content">
-    To be completed
+
+    <div class="images-container">
+      <app-file-manager *ngFor="let item of createArray(16); let i = index;"
+                        [previewImageUrl]="imagePaths[i] || null"
+                        (filename)="setFilename(i, $event)"></app-file-manager>
+    </div>
+
   </div>
 </section>
 
-<section (click)="setActivePane($event, 6)" [class.active]="activePane===6">
+<section (click)="setActivePane($event, 6)" [class.active]="activePane===6" id="pane6">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
   <div class="next" [class.active]="activePane===6">
     <button (click)="setActivePane($event, 5)"><i class="pad-left fa fa-chevron-circle-left"></i>
@@ -340,7 +348,7 @@
   </div>
 </section>
 
-<section (click)="setActivePane($event, 7)" [class.active]="activePane===7">
+<section (click)="setActivePane($event, 7)" [class.active]="activePane===7" id="pane7">
   <div class="status red-status"><i class="fa fa-warning"></i> Incomplete</div>
   <div class="next" [class.active]="activePane===7">
     <button (click)="setActivePane($event, 6)"><i class="pad-left fa fa-chevron-circle-left"></i> Prev</button>
@@ -351,6 +359,7 @@
   </div>
 </section>
 
+<button (click)="resetListing()">Reset Listing</button>
 <!--<pre>{{ matrix | json}}</pre>-->
 <!--<pre>{{ baseSkus | json }}</pre>-->
 

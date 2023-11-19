@@ -1,0 +1,20 @@
+{
+  "require": {
+    "symfony/mailer": "^6.2",
+    "vlucas/phpdotenv": "^5.5",
+    "nesbot/carbon": "^2.66",
+    "ext-pdo": "*",
+    "ext-curl": "*",
+    "ext-gd": "*",
+    "ext-imagick": "*",
+    "ext-pcntl": "*",
+    "ext-sockets": "*",
+    "ext-posix": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "libs\\": "libs/",
+      "libs\\v1\\": "libs/v1/"
+    }
+  }
+}

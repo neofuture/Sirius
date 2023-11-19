@@ -18,5 +18,4 @@ import {StandardFooterComponent} from "../../partials/standard-footer/standard-f
 })
 
 export class SellComponent {
-
 }

@@ -1,0 +1,175 @@
+.container__file-manager {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--light-grey);
+  background-color: var(--white);
+  cursor: pointer;
+  overflow: hidden;
+  width:100%;
+}
+
+.control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.file-input {
+  display: none;
+}
+
+.icon {
+  position: absolute;
+  font-size: 80px;
+  color: var(--light-grey);
+}
+
+.icon-remove {
+  position: absolute;
+  font-size: 16px;
+  color: var(--white);
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: red;
+  z-index: 2;
+}
+
+.progress-bar__container {
+  width: calc(100% - 12px);
+  margin: 12px;
+  height: 28px;
+  background-color: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--field-border-colour);
+  overflow: hidden;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 0 5px white, 0 0 0 150px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar__container.hide {
+  opacity: 0;
+}
+
+.progress-bar__container.show {
+  opacity: 1;
+  transition: all 0.3ms ease-in-out;
+}
+
+.progress-bar__text {
+  position: absolute;
+  width: 100%;
+  margin-top: 2px;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: var(--green);
+  transition: width 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.preview-image__container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+
+.dark {
+  color: var(--black);
+}
+
+.light {
+  color: var(--white);
+}
+
+
+@media only screen and (min-width: 40rem) {
+  .container__file-manager {
+    width: 284px;
+    height: 284px;
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  .container__file-manager {
+    width: 228px;
+    height: 228px;
+  }
+}
+
+@media only screen and (min-width: 64rem) {
+  .container__file-manager {
+    width: 232px;
+    height: 232px;
+  }
+}
+
+@media only screen and (min-width: 80rem) {
+  .container__file-manager {
+    width: 234px;
+    height: 234px;
+  }
+}
+
+@media only screen and (min-width: 92rem) {
+  .container__file-manager {
+    width: 272px;
+    height: 272px;
+  }
+}
+
+
+.drag-drop-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px dashed var(--blue);
+  color: var(--black);
+  display: none;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.drag-drop-area.show {
+  display: flex;
+}
+
+
+.drag-over {
+  border: 2px dashed #007BFF;
+}

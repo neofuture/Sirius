@@ -14,7 +14,7 @@
   <div class="preview-image__container" *ngIf="previewImageUrl">
     <img
       *ngIf="previewImageUrl"
-      [src]="previewImageUrl"
+      [src]="'https://sirius.carlfearby.co.uk/' + previewImageUrl"
       class="preview-image"/>
   </div>
   <i *ngIf="!previewImageUrl" class="fa fa-file-image icon"></i>

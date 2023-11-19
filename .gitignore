@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 /src/uploads/
 /src/.env
+src/api/.env

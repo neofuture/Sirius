@@ -398,7 +398,11 @@ export class ListingComponent implements OnInit {
         // @ts-ignore
         const element = document.getElementById('pane' + number).offsetTop - 16;
         window.scroll({top: element, left: 0, behavior: 'smooth'});
-      }, 300);
+      }, 300);      setTimeout(() => {
+        // @ts-ignore
+        const element = document.getElementById('pane' + number).offsetTop - 16;
+        window.scroll({top: element, left: 0, behavior: 'smooth'});
+      }, 600);
 
     }
   }

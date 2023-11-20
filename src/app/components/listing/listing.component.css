@@ -38,7 +38,7 @@ section {
 
 section.active {
   background-color: var(--background-light-colour);
-  max-height: 1600px;
+  max-height: 3600px;
   transition: all 300ms;
 }
 
@@ -332,14 +332,13 @@ hr {
 }
 
 .images-container {
-  display: block;
+  display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-@media only screen and (min-width: 40rem) {
+@media only screen and (max-width: 40rem) {
   .images-container {
-    display: flex;
+    flex-direction: column;
   }
 }
-

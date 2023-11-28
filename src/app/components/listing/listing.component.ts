@@ -57,7 +57,7 @@ export class ListingComponent implements OnInit {
   @ViewChild('pane8', {static: false}) pane8: ElementRef | undefined;
 
   baseSkus: any;
-  activePane: number = 5;
+  activePane: number = 2;
   brand: string = 'Apple';
   model: string = 'iPad Pro 12.9" 2020';
   colour: string = 'Space Grey';

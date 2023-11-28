@@ -321,11 +321,11 @@
     </button>
     <button (click)="setActivePane($event, 6)">Next <i class="pad-right fa fa-chevron-circle-right"></i></button>
   </div>
-  <h2>Images &amp; Video ({{ countImages()}}/16)</h2>
+  <h2>Images &amp; Video ({{ countImages()}}/9)</h2>
   <div class="pane-content">
 
     <div class="images-container">
-      <app-file-manager *ngFor="let item of createArray(16); let i = index;"
+      <app-file-manager *ngFor="let item of createArray(9); let i = index;"
                         [previewImageUrl]="imagePaths[i] || null"
                         (filename)="setFilename(i, $event)"></app-file-manager>
     </div>
